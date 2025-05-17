@@ -10,6 +10,9 @@
     "lint": "next lint",
     "deploy": "gh-pages -d out"
   },
+  "engines": {
+    "node": ">=18 <=20"
+  },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "^3.9.1",
