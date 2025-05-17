@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 50% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 270 50% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 270 50% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 270 50% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 270 30% 20%;
+    --muted-foreground: 270 5% 65%;
+
+    --accent: 270 30% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 50% 20%;
+    --input: 270 30% 20%;
+    --ring: 0 80% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a0033;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c10000;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a00000;
+}
+
+/* Fix badge hover effect */
+.badge {
+  transition: background-color 0.2s ease;
+}
+
+.badge:hover {
+  background-color: rgba(193, 0, 0, 0.2) !important;
+}
