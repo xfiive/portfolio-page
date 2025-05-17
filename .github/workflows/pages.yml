@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
@@ -10,14 +10,13 @@ permissions:
   contents: read
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js & pnpm
+      - name: Setup PNPM
         uses: pnpm/action-setup@v3
         with:
           version: 9
@@ -25,14 +24,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build site
+      - name: Build static site
         run: pnpm build
 
-      - name: Deploy to GitHub Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: out
-      - name: Publish
+          path: out/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
