@@ -4,8 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
   title: "Mikhail Shytsko's Portfolio",
-  description: "Professional portfolio showcasing software engineering skills and projects",
-    generator: 'v0.dev'
+  description: "Personal page of Mikhail Shytsko"
 }
 
 export default function RootLayout({
