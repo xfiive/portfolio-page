@@ -436,7 +436,7 @@ export default function Portfolio() {
                                             <p className="text-zinc-400">
                                                 Built an equipment certification automation platform using Spring Boot
                                                 and PostgreSQL, reducing
-                                                accounting time by 15% and accelerating product delivery by 30%
+                                                accounting time and accelerating product delivery
                                             </p>
 
                                             <div className="flex flex-wrap gap-2">
