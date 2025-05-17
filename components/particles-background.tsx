@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useRef, useState } from "react"
 
 interface Particle {
@@ -20,6 +22,35 @@ export default function ParticlesBackground() {
   const particleCount = 100
   const colors = ["#c10000", "#ff0000", "#ff3333", "#ff6666"]
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null)
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    // Don't create particles if clicking on interactive elements
+    if ((e.target as HTMLElement).closest('a, button, input, textarea, [role="button"], .no-particles')) {
+      return
+    }
+
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    // Create a burst of particles
+    for (let i = 0; i < 20; i++) {
+      particles.current.push({
+        x,
+        y,
+        size: Math.random() * 4 + 1,
+        speedX: Math.random() * 4 - 2,
+        speedY: Math.random() * 4 - 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: 0.8,
+        life: 0,
+        maxLife: Math.random() * 60 + 30, // Frames until particle disappears
+      })
+    }
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -50,39 +81,17 @@ export default function ParticlesBackground() {
       })
     }
 
-    // Handle click to create particles
-    const handleClick = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      // Create a burst of particles
-      for (let i = 0; i < 20; i++) {
-        particles.current.push({
-          x,
-          y,
-          size: Math.random() * 4 + 1,
-          speedX: Math.random() * 4 - 2,
-          speedY: Math.random() * 4 - 2,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: 0.8,
-          life: 0,
-          maxLife: Math.random() * 60 + 30, // Frames until particle disappears
-        })
-      }
-    }
-
     // Handle mouse move to track position
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
+      if (!canvasRef.current) return
+      const rect = canvasRef.current.getBoundingClientRect()
       setMousePosition({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
       })
     }
 
-    canvas.addEventListener("click", handleClick)
-    canvas.addEventListener("mousemove", handleMouseMove)
+    document.addEventListener("mousemove", handleMouseMove)
 
     // Animation loop
     const animate = () => {
@@ -161,16 +170,18 @@ export default function ParticlesBackground() {
 
     return () => {
       window.removeEventListener("resize", handleResize)
-      canvas.removeEventListener("click", handleClick)
-      canvas.removeEventListener("mousemove", handleMouseMove)
+      document.removeEventListener("mousemove", handleMouseMove)
     }
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full z-0"
-      style={{ pointerEvents: "auto", cursor: "pointer" }}
-    />
+      <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <canvas ref={canvasRef} className="w-full h-full" />
+        <div
+            className="absolute top-0 left-0 w-full h-full pointer-events-auto"
+            onClick={handleClick}
+            style={{ cursor: "default" }}
+        />
+      </div>
   )
 }
