@@ -663,7 +663,7 @@ export default function Portfolio() {
                                                         rel="noopener noreferrer"
                                                         className="text-white underline underline-offset-4 hover:text-zinc-200"
                                                     >
-                                                        Erste&nbsp;Digital&nbsp;2024
+                                                        Erste&nbsp;Digital
                                                     </a>
                                                     ,&nbsp;
                                                     <a
@@ -672,7 +672,7 @@ export default function Portfolio() {
                                                         rel="noopener noreferrer"
                                                         className="text-white underline underline-offset-4 hover:text-zinc-200"
                                                     >
-                                                        GymBeam&nbsp;Data&nbsp;Hackathon
+                                                        GymBeam
                                                     </a>
                                                     &nbsp;and&nbsp;
                                                     <a
@@ -681,8 +681,9 @@ export default function Portfolio() {
                                                         rel="noopener noreferrer"
                                                         className="text-white underline underline-offset-4 hover:text-zinc-200"
                                                     >
-                                                        T-Systems&nbsp;Hackathon&nbsp;2024
+                                                        T-Systems&nbsp;
                                                     </a>
+                                                    Hackathon
                                                 </li>
 
                                                 <li>
