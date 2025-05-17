@@ -4,7 +4,12 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
   title: "Mikhail Shytsko's Portfolio",
-  description: "Personal page of Mikhail Shytsko"
+  description: "Personal page of Mikhail Shytsko",
+  icons: {
+    icon: "/icon.ico",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 }
 
 export default function RootLayout({
