@@ -277,15 +277,21 @@ export default function Portfolio() {
                                                 />
                                             </svg>
                                         </div>
-                                        <div>
-                                            <CardTitle className="text-xl">Co-founder at meetera</CardTitle>
+                                        <div className="break-words whitespace-normal max-w-full">
+                                            <CardTitle
+                                                className="text-xl break-words max-w-full"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                            >
+                                                Co-founder at meetera
+                                            </CardTitle>
                                             <Link
                                                 href="https://linktr.ee/meetera"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-[#c10000] hover:text-red-400 transition-colors flex items-center gap-1 mt-1"
+                                                className="text-[#c10000] hover:text-red-400 transition-colors flex items-center gap-1 mt-1 break-words max-w-full"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
-                                                <ExternalLink className="h-4 w-4"/>
+                                                <ExternalLink className="h-4 w-4" />
                                                 linktr.ee/meetera
                                             </Link>
                                         </div>
@@ -642,17 +648,17 @@ export default function Portfolio() {
                                     </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="space-y-6">
+                                    <div className="space-y-6 break-words whitespace-normal">
                                         <div>
                                             <h4 className="font-medium text-lg mb-2">Personal achievements:</h4>
-                                            <ul className="list-disc pl-5 space-y-2 text-zinc-400">
+                                            <ul className="list-disc pl-5 space-y-2 text-zinc-400 break-words">
                                                 <li>
                                                     Successfully participated in multiple hackathons with&nbsp;
                                                     <a
                                                         href="https://linktr.ee/argonteam"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         Argon&nbsp;team
                                                     </a>
@@ -661,7 +667,7 @@ export default function Portfolio() {
                                                         href="https://www.erstedigital.com/sk/hackathon"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         Erste&nbsp;Digital
                                                     </a>
@@ -670,7 +676,7 @@ export default function Portfolio() {
                                                         href="https://datahackathon.sk/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         GymBeam
                                                     </a>
@@ -679,22 +685,21 @@ export default function Portfolio() {
                                                         href="https://hackathon.deutschetelekomitsolutions.sk/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
-                                                        T-Systems&nbsp;
+                                                        T-Systems&nbsp;Hackathon
                                                     </a>
-                                                    Hackathon
                                                 </li>
 
                                                 <li>
                                                     Founded project <strong>HackPN</strong> and successfully organised 2
-                                                    hackathons with it - offline one in the city of Piešťany and an
+                                                    hackathons with it — offline one in the city of Piešťany and an
                                                     online one with&nbsp;
                                                     <a
                                                         href="https://upliftmedia.us/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         UpliftMedia
                                                     </a>
@@ -707,7 +712,7 @@ export default function Portfolio() {
                                                         href="https://startupcentrum.sk/project/meetera-2/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         UVP Startup Accelerator
                                                     </a>
@@ -716,19 +721,18 @@ export default function Portfolio() {
                                                         href="https://linktr.ee/meetera"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-zinc-200"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
                                                     >
                                                         meetera
                                                     </a>
                                                     &nbsp;and got into top 3 startups at UVP Startup Finals
                                                 </li>
                                             </ul>
-
                                         </div>
 
                                         <div>
                                             <h4 className="font-medium text-lg mb-2">Languages:</h4>
-                                            <ul className="list-disc pl-5 space-y-2 text-zinc-400">
+                                            <ul className="list-disc pl-5 space-y-2 text-zinc-400 break-words">
                                                 <li>
                                                     <span className="text-white">Russian</span> (native)
                                                 </li>
@@ -736,13 +740,10 @@ export default function Portfolio() {
                                                     <span className="text-white">Belarussian</span> (native)
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">Slovak</span> (professional working
-                                                    proficiency)
+                                                    <span className="text-white">Slovak</span> (professional working proficiency)
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">English</span> (full professional
-                                                    proficiency - C1 level, IELTS
-                                                    Academic band 8.0)
+                                                    <span className="text-white">English</span> (full professional proficiency — C1 level, IELTS Academic band 8.0)
                                                 </li>
                                             </ul>
                                         </div>
@@ -889,64 +890,88 @@ export default function Portfolio() {
                 </section>
 
                 {/* Contact Section */}
-                <section id="contact" className="py-12 md:py-24 border-t border-[#c10000] border-t-4" ref={contactRef}>
+                <section
+                    id="contact"
+                    className="py-12 md:py-24 border-t-4 border-[#c10000] max-w-full break-words whitespace-normal"
+                    ref={contactRef}
+                >
                     <motion.div
-                        initial={{opacity: 0, y: 50}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5}}
-                        viewport={{once: true}}
-                        className="space-y-8"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
+                        className="space-y-8 max-w-full break-words whitespace-normal"
                     >
-                        <div className="space-y-2">
-                            <Badge
-                                className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
+                        <div className="space-y-2 max-w-full break-words whitespace-normal">
+                            <Badge className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
                                 Contact
                             </Badge>
                             <h2 className="text-3xl font-bold tracking-tight">Get In Touch</h2>
-                            <p className="text-zinc-400 max-w-3xl">
+                            <p className="text-zinc-400 max-w-3xl break-words whitespace-normal">
                                 Feel free to reach out for collaborations or just a friendly chat!
                             </p>
                         </div>
 
-                        <div className="max-w-3xl mx-auto">
-                            <motion.div whileHover={{scale: 1.02}} transition={{type: "spring", stiffness: 300}}>
-                                <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
+                        <div className="max-w-3xl mx-auto max-w-full break-words whitespace-normal">
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                            >
+                                <Card
+                                    className="bg-[#1a0033]/50 border-2 border-[#c10000] max-w-full break-words whitespace-normal"
+                                    style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                >
                                     <CardHeader>
-                                        <CardTitle>Contact Information</CardTitle>
+                                        <CardTitle
+                                            className="break-words whitespace-normal"
+                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                        >
+                                            Contact Information
+                                        </CardTitle>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
-                                        <div className="flex items-center gap-3">
-                                            <Mail className="h-5 w-5 text-[#c10000]"/>
+                                    <CardContent className="space-y-6 max-w-full break-words whitespace-normal">
+                                        {/** Email **/}
+                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Mail className="h-5 w-5 text-[#c10000]" />
                                             <a
                                                 href="mailto:mikhail.shytsko@gmail.com"
-                                                className="text-white hover:text-[#c10000] transition-colors"
+                                                className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 mikhail.shytsko@gmail.com
                                             </a>
                                         </div>
-                                        <div className="flex items-center gap-3">
-                                            <Linkedin className="h-5 w-5 text-[#c10000]"/>
+
+                                        {/** LinkedIn **/}
+                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Linkedin className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://www.linkedin.com/in/mikhail-shytsko-029a5a297/"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-white hover:text-[#c10000] transition-colors"
+                                                className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 linkedin.com/in/mikhail-shytsko
                                             </Link>
                                         </div>
-                                        <div className="flex items-center gap-3">
-                                            <Github className="h-5 w-5 text-[#c10000]"/>
+
+                                        {/** GitHub **/}
+                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Github className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://github.com/xfiive"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-white hover:text-[#c10000] transition-colors"
+                                                className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 github.com/xfiive
                                             </Link>
                                         </div>
-                                        <div className="flex items-center gap-3">
+
+                                        {/** X (Twitter) **/}
+                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="20"
@@ -959,25 +984,28 @@ export default function Portfolio() {
                                                 strokeLinejoin="round"
                                                 className="text-[#c10000]"
                                             >
-                                                <path
-                                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
                                             </svg>
                                             <Link
                                                 href="https://x.com/mikhailshytsko"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-white hover:text-[#c10000] transition-colors"
+                                                className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 x.com/mikhailshytsko
                                             </Link>
                                         </div>
-                                        <div className="flex items-center gap-3">
-                                            <ExternalLink className="h-5 w-5 text-[#c10000]"/>
+
+                                        {/** Linktree **/}
+                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <ExternalLink className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://linktr.ee/mikhsh"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-white hover:text-[#c10000] transition-colors"
+                                                className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 linktr.ee/mikhsh
                                             </Link>
