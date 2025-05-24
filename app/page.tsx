@@ -280,7 +280,7 @@ export default function Portfolio() {
                                         <div className="break-words whitespace-normal max-w-full">
                                             <CardTitle
                                                 className="text-xl break-words max-w-full"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 Co-founder at meetera
                                             </CardTitle>
@@ -289,9 +289,9 @@ export default function Portfolio() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-[#c10000] hover:text-red-400 transition-colors flex items-center gap-1 mt-1 break-words max-w-full"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
-                                                <ExternalLink className="h-4 w-4" />
+                                                <ExternalLink className="h-4 w-4"/>
                                                 linktr.ee/meetera
                                             </Link>
                                         </div>
@@ -300,11 +300,9 @@ export default function Portfolio() {
                                 <CardContent>
                                     <p className="text-zinc-400">
                                         meetera is the AI-powered platform that turns chaotic event planning into a
-                                        10-minute task.
-                                        As a co-founder of meetera, I'm building innovative solutions to connect people
+                                        10-minute task - as a co-founder of meetera, I'm building innovative solutions
+                                        to connect people
                                         and create meaningful interactions.
-                                        Our platform leverages cutting-edge technology to solve
-                                        real-world social challenges and create real value for our users
                                     </p>
                                 </CardContent>
                             </Card>
@@ -352,9 +350,9 @@ export default function Portfolio() {
                                     <CardContent>
                                         <div className="space-y-4">
                                             <p className="text-zinc-400">
-                                                Designed and built reactive backend applications on Spring WebFlux using
-                                                Google Cloud Platform
-                                                ecosystem
+                                                Designed the architecture and implemented a backend application with
+                                                reactive data processing, providing data streams encryption and close
+                                                interaction with Google Cloud Platform environment.
                                             </p>
 
                                             <div className="flex flex-wrap gap-2">
@@ -394,7 +392,8 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-zinc-400">
                                                                     <li>
-                                                                        Designed and built reactive backend application
+                                                                        Designed architecture and built reactive backend
+                                                                        application
                                                                         on Spring WebFlux using Google Cloud Platform
                                                                         ecosystem
                                                                     </li>
@@ -402,9 +401,8 @@ export default function Portfolio() {
                                                                         big data streaming
                                                                     </li>
                                                                     <li>
-                                                                        Led the project development team, while also
-                                                                        being an architect and DevOps
-                                                                        specialist at the project
+                                                                        Led the project development team, combining with
+                                                                        architect and devOps responsibilities
                                                                     </li>
                                                                 </ul>
 
@@ -440,9 +438,10 @@ export default function Portfolio() {
                                     <CardContent>
                                         <div className="space-y-4">
                                             <p className="text-zinc-400">
-                                                Built an equipment certification automation platform using Spring Boot
-                                                and PostgreSQL, reducing
-                                                accounting time and accelerating product delivery
+                                                Developed a certification automation platform and prototype IoT system,
+                                                applying Spring and time-series databases to accelerate data
+                                                processing, improve transaction visibility, and eliminate manual
+                                                operations
                                             </p>
 
                                             <div className="flex flex-wrap gap-2">
@@ -506,6 +505,7 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
                                                                     Worked with: Spring Framework, PostgreSQL, MongoDB,
+                                                                    InfluxDB,
                                                                     ESP32, Tasmota, Paho MQTT, Vaadin, WebSockets,
                                                                     Spring AOP, Spring MQTT, GraalVM, iText, Docker,
                                                                     GitHub, GitHub Actions, Maven, Junit 5
@@ -537,9 +537,10 @@ export default function Portfolio() {
                                     <CardContent>
                                         <div className="space-y-4">
                                             <p className="text-zinc-400">
-                                                Implemented a secure REST API using OAuth2 and JWT, improving customer
-                                                data security and
-                                                compliance
+                                                Designed and implemented flexible and secure schedule management and a
+                                                QR coupon
+                                                mailing system to increase customer engagement and marketing
+                                                effectiveness.
                                             </p>
 
                                             <div className="flex flex-wrap gap-2">
@@ -590,7 +591,7 @@ export default function Portfolio() {
                                                                     </li>
                                                                     <li>
                                                                         Developed A/B testing system with Kafka,
-                                                                        increasing customer engagement by 25% and
+                                                                        increasing customer engagement by and
                                                                         increasing promotional sales by 15%, improving
                                                                         marketing effectiveness
                                                                     </li>
@@ -740,10 +741,12 @@ export default function Portfolio() {
                                                     <span className="text-white">Belarussian</span> (native)
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">Slovak</span> (professional working proficiency)
+                                                    <span className="text-white">Slovak</span> (professional working
+                                                    proficiency)
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">English</span> (full professional proficiency — C1 level, IELTS Academic band 8.0)
+                                                    <span className="text-white">English</span> (full professional
+                                                    proficiency — C1 level, IELTS Academic band 8.0)
                                                 </li>
                                             </ul>
                                         </div>
@@ -896,14 +899,15 @@ export default function Portfolio() {
                     ref={contactRef}
                 >
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
+                        initial={{opacity: 0, y: 50}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 0.5}}
+                        viewport={{once: true}}
                         className="space-y-8 max-w-full break-words whitespace-normal"
                     >
                         <div className="space-y-2 max-w-full break-words whitespace-normal">
-                            <Badge className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
+                            <Badge
+                                className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
                                 Contact
                             </Badge>
                             <h2 className="text-3xl font-bold tracking-tight">Get In Touch</h2>
@@ -914,64 +918,68 @@ export default function Portfolio() {
 
                         <div className="max-w-3xl mx-auto max-w-full break-words whitespace-normal">
                             <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}
+                                whileHover={{scale: 1.02}}
+                                transition={{type: "spring", stiffness: 300}}
                             >
                                 <Card
                                     className="bg-[#1a0033]/50 border-2 border-[#c10000] max-w-full break-words whitespace-normal"
-                                    style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                    style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                 >
                                     <CardHeader>
                                         <CardTitle
                                             className="break-words whitespace-normal"
-                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                            style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                         >
                                             Contact Information
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-6 max-w-full break-words whitespace-normal">
                                         {/** Email **/}
-                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Mail className="h-5 w-5 text-[#c10000]" />
+                                        <div
+                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Mail className="h-5 w-5 text-[#c10000]"/>
                                             <a
                                                 href="mailto:mikhail.shytsko@gmail.com"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 mikhail.shytsko@gmail.com
                                             </a>
                                         </div>
 
                                         {/** LinkedIn **/}
-                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Linkedin className="h-5 w-5 text-[#c10000]" />
+                                        <div
+                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Linkedin className="h-5 w-5 text-[#c10000]"/>
                                             <Link
                                                 href="https://www.linkedin.com/in/mikhail-shytsko-029a5a297/"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 linkedin.com/in/mikhail-shytsko
                                             </Link>
                                         </div>
 
                                         {/** GitHub **/}
-                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Github className="h-5 w-5 text-[#c10000]" />
+                                        <div
+                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <Github className="h-5 w-5 text-[#c10000]"/>
                                             <Link
                                                 href="https://github.com/xfiive"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 github.com/xfiive
                                             </Link>
                                         </div>
 
                                         {/** X (Twitter) **/}
-                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                        <div
+                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="20"
@@ -984,28 +992,30 @@ export default function Portfolio() {
                                                 strokeLinejoin="round"
                                                 className="text-[#c10000]"
                                             >
-                                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                                                <path
+                                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
                                             </svg>
                                             <Link
                                                 href="https://x.com/mikhailshytsko"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 x.com/mikhailshytsko
                                             </Link>
                                         </div>
 
                                         {/** Linktree **/}
-                                        <div className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <ExternalLink className="h-5 w-5 text-[#c10000]" />
+                                        <div
+                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
+                                            <ExternalLink className="h-5 w-5 text-[#c10000]"/>
                                             <Link
                                                 href="https://linktr.ee/mikhsh"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
+                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
                                             >
                                                 linktr.ee/mikhsh
                                             </Link>
