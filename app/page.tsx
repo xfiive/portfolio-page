@@ -392,23 +392,25 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-zinc-400">
                                                                     <li>
-                                                                        Designed architecture and built reactive backend
-                                                                        application
-                                                                        on Spring WebFlux using Google Cloud Platform
-                                                                        ecosystem
-                                                                    </li>
-                                                                    <li>Successfully implemented on-the-fly encrypted
-                                                                        big data streaming
+                                                                        Launched a monolithic application on Spring
+                                                                        WebFlux and Google Cloud Platform, capable of
+                                                                        handling over 15k RPs at peak load
                                                                     </li>
                                                                     <li>
-                                                                        Led the project development team, combining with
-                                                                        architect and devOps responsibilities
+                                                                        Implemented streaming data encryption ‘on the
+                                                                        fly’, reducing unauthorised reads to 0 and
+                                                                        ensuring 100% EU GDPR compliance
+                                                                    </li>
+                                                                    <li>
+                                                                        Led a team of three developers and automated
+                                                                        CI/CD in GitLab, reducing deployment time from
+                                                                        12 minutes to 4 minutes without downtime
                                                                     </li>
                                                                 </ul>
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
-                                                                    Worked with: Spring Framework, GCP, Firestore,
+                                                                    Worked with: Spring WebFlux, GCP, Firestore,
                                                                     Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
                                                                 </p>
                                                             </div>
@@ -481,34 +483,26 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-zinc-400">
                                                                     <li>
-                                                                        Built an equipment certification automation
-                                                                        platform using Spring Boot and PostgreSQL,
-                                                                        reducing accounting
-                                                                        errors by 45% and accelerating workflow by 30%
-                                                                        by eliminating manual processes
+                                                                        Automated equipment certification, reducing the
+                                                                        time required for document certification by
+                                                                        almost 50%
                                                                     </li>
                                                                     <li>
-                                                                        Integrated numpy via GraalPy into Spring Boot
-                                                                        service to analyse product trends, increasing
-                                                                        data processing
-                                                                        speed by 25% and accelerating decision making by
-                                                                        the product team
+                                                                        Implemented GraalPy trend analytics, thereby
+                                                                        accelerating product decision-making by 25%
                                                                     </li>
                                                                     <li>
-                                                                        Developed a modular audit library on Spring AOP,
-                                                                        improving transaction traceability and reducing
-                                                                        post-processing time by 15% for certifications
-                                                                        by region and hardware type
+                                                                        Created a Spring AOP audit library, reducing the
+                                                                        search for internal transaction data and
+                                                                        ensuring reliable collection of critical logs
                                                                     </li>
                                                                 </ul>
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
                                                                     Worked with: Spring Framework, PostgreSQL, MongoDB,
-                                                                    InfluxDB,
-                                                                    ESP32, Tasmota, Paho MQTT, Vaadin, WebSockets,
-                                                                    Spring AOP, Spring MQTT, GraalVM, iText, Docker,
-                                                                    GitHub, GitHub Actions, Maven, Junit 5
+                                                                    Vaadin, Spring AOP, GraalVM, Docker, GitHub, GitHub
+                                                                    Actions
                                                                 </p>
                                                             </div>
                                                         </motion.div>
@@ -580,29 +574,28 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-zinc-400">
                                                                     <li>
-                                                                        Implemented a secure REST API using OAuth2 and
-                                                                        JWT, improving customer data security
-                                                                        and compliance
+                                                                        Implemented a secure REST API on Spring Boot
+                                                                        with OAuth2 and JWT, improving customer data
+                                                                        security and compliance
                                                                     </li>
                                                                     <li>
-                                                                        Improved shift scheduling with feature-toggle,
-                                                                        reducing update failures by 40% and
-                                                                        simplifying in-store deployment
+                                                                        Optimised the shift schedule using feature
+                                                                        toggles, thereby optimising staff performance
+                                                                        and reducing the time required to approve work
+                                                                        shifts from 5 to 2 days
                                                                     </li>
                                                                     <li>
-                                                                        Developed A/B testing system with Kafka,
+                                                                        Developed A/B testing system,
                                                                         increasing customer engagement by and
-                                                                        increasing promotional sales by 15%, improving
-                                                                        marketing effectiveness
+                                                                        increasing promotional sales
                                                                     </li>
                                                                 </ul>
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
                                                                     Worked with: Spring Framework, OAuth2, JWT,
-                                                                    PostgreSQL, Redis, ZXing, GitHub, GitHub Actions,
-                                                                    Maven, Mockito,
-                                                                    Junit 5
+                                                                    PostgreSQL, Redis, GitHub, GitHub Actions,
+                                                                    Maven
                                                                 </p>
                                                             </div>
                                                         </motion.div>
