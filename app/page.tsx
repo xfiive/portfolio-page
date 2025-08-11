@@ -397,7 +397,7 @@ export default function Portfolio() {
                                                                         Successfully maintained and expanded a code base of 85k lines of code single-handedly, saving significant funds in the team's budget.
                                                                     </li>
                                                                     <li>
-                                                                        Improved reliability of critical flows by refining Kafka message handling and database transactions, reducing production incidents and support workload
+                                                                        Improved reliability of critical flows by refining Kafka message handling and database transactions, reducing production incidents and support workload.
                                                                     </li>
                                                                 </ul>
 
