@@ -391,26 +391,19 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-zinc-400">
                                                                     <li>
-                                                                        Launched a monolithic application on Spring
-                                                                        WebFlux and Google Cloud Platform, capable of
-                                                                        handling over 15k RPs at peak load
+                                                                        Was responsible for the performance of two microservices, accelerating individual requests by 20 times, reducing infrastructure costs significantly.
                                                                     </li>
                                                                     <li>
-                                                                        Implemented streaming data encryption ‘on the
-                                                                        fly’, reducing unauthorised reads to 0 and
-                                                                        ensuring 100% EU GDPR compliance
+                                                                        Successfully maintained and expanded a code base of 85k lines of code single-handedly, saving significant funds in the team's budget.
                                                                     </li>
                                                                     <li>
-                                                                        Led a team of three developers and automated
-                                                                        CI/CD in GitLab, reducing deployment time from
-                                                                        12 minutes to 4 minutes without downtime
+                                                                        Improved reliability of critical flows by refining Kafka message handling and database transactions, reducing production incidents and support workload
                                                                     </li>
                                                                 </ul>
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
-                                                                    Worked with: Spring WebFlux, GCP, Firestore,
-                                                                    Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
+                                                                    Spring WebFlux, OracleDB, Kafka, Podman, GitLab, Kotlin
                                                                 </p>
                                                             </div>
                                                         </motion.div>
@@ -499,8 +492,7 @@ export default function Portfolio() {
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
-                                                                    Worked with: Spring WebFlux, GCP, Firestore,
-                                                                    Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
+                                                                    Spring WebFlux, GCP, Firestore, Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
                                                                 </p>
                                                             </div>
                                                         </motion.div>
@@ -589,7 +581,7 @@ export default function Portfolio() {
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
-                                                                    Worked with: Spring Framework, PostgreSQL, MongoDB,
+                                                                    Spring Framework, PostgreSQL, MongoDB,
                                                                     Vaadin, Spring AOP, GraalVM, Docker, GitHub, GitHub
                                                                     Actions
                                                                 </p>
@@ -682,7 +674,7 @@ export default function Portfolio() {
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-zinc-400">
-                                                                    Worked with: Spring Framework, OAuth2, JWT,
+                                                                    Spring Framework, OAuth2, JWT,
                                                                     PostgreSQL, Redis, GitHub, GitHub Actions,
                                                                     Maven
                                                                 </p>
@@ -723,8 +715,7 @@ export default function Portfolio() {
                             <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                 <CardHeader className="pb-2">
                                     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                        <CardTitle className="text-xl">Technical University of Kosice, FEI,
-                                            Informatics</CardTitle>
+                                        <CardTitle className="text-xl">Bachelor of Computer Science - Technical University of Kosice</CardTitle>
                                         <Badge variant="outline" className="mt-2 md:mt-0 border-red-900/50 w-fit">
                                             September 2022 - June 2025
                                         </Badge>
