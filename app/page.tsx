@@ -12,11 +12,11 @@ import {
     GraduationCap,
     User,
 } from "lucide-react"
-import {Button} from "@/components/ui/button"
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
-import {Badge} from "@/components/ui/badge"
-import {motion, AnimatePresence, useScroll, useTransform} from "framer-motion"
-import {useState, useRef} from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { useState, useRef } from "react"
 import ParticlesBackground from "@/components/particles-background"
 
 export default function Portfolio() {
@@ -28,12 +28,12 @@ export default function Portfolio() {
     const projectsRef = useRef(null)
     const contactRef = useRef(null)
 
-    const {scrollYProgress} = useScroll()
+    const { scrollYProgress } = useScroll()
     const y1 = useTransform(scrollYProgress, [0, 1], [0, -100])
     const y2 = useTransform(scrollYProgress, [0, 1], [0, -50])
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 0.5, 0])
 
-    const {scrollYProgress: heroScrollProgress} = useScroll({
+    const { scrollYProgress: heroScrollProgress } = useScroll({
         target: heroRef,
         offset: ["start end", "end start"],
     })
@@ -50,7 +50,7 @@ export default function Portfolio() {
     }
 
     const container = {
-        hidden: {opacity: 0},
+        hidden: { opacity: 0 },
         show: {
             opacity: 1,
             transition: {
@@ -60,30 +60,30 @@ export default function Portfolio() {
     }
 
     const item = {
-        hidden: {opacity: 0, y: 20},
-        show: {opacity: 1, y: 0},
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 },
     }
 
     return (
         <div className="min-h-screen bg-[#1a0033] text-white relative overflow-hidden" ref={containerRef}>
             {/* Animated Background */}
-            <ParticlesBackground/>
+            <ParticlesBackground />
 
             {/* Decorative Elements */}
             <motion.div
                 className="absolute top-[20%] right-[5%] w-64 h-64 rounded-full bg-[#c10000]/5 blur-3xl"
-                style={{y: y1}}
+                style={{ y: y1 }}
             />
             <motion.div
                 className="absolute bottom-[30%] left-[10%] w-96 h-96 rounded-full bg-[#c10000]/5 blur-3xl"
-                style={{y: y2}}
+                style={{ y: y2 }}
             />
 
             {/* Header */}
             <motion.header
-                initial={{y: -100, opacity: 0}}
-                animate={{y: 0, opacity: 1}}
-                transition={{duration: 0.5}}
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
                 className="sticky top-0 z-50 w-full border-b border-[#c10000] border-b-4 bg-[#1a0033]/80 backdrop-blur"
             >
                 <div className="container flex h-16 items-center justify-between">
@@ -112,8 +112,8 @@ export default function Portfolio() {
                     </nav>
                     <Link href="/cv.pdf" target="_blank" download>
                         <Button variant="outline"
-                                className="hidden md:flex border-red-900/50 text-white hover:bg-red-900/20 gap-2">
-                            <Download className="h-4 w-4"/>
+                            className="hidden md:flex border-red-900/50 text-white hover:bg-red-900/20 gap-2">
+                            <Download className="h-4 w-4" />
                             Resume
                         </Button>
                     </Link>
@@ -123,11 +123,11 @@ export default function Portfolio() {
             <main className="container py-8 md:py-12 relative z-10">
                 {/* Hero Section */}
                 <section id="about" className="py-12 md:py-24" ref={heroRef}>
-                    <motion.div style={{scale: heroScale, y: heroY}} className="grid gap-8 md:grid-cols-2 items-center">
+                    <motion.div style={{ scale: heroScale, y: heroY }} className="grid gap-8 md:grid-cols-2 items-center">
                         <motion.div
-                            initial={{opacity: 0, x: -50}}
-                            animate={{opacity: 1, x: 0}}
-                            transition={{duration: 0.6}}
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
                             className="space-y-6"
                         >
                             <Badge
@@ -144,13 +144,13 @@ export default function Portfolio() {
                             </p>
                             <div className="flex gap-4">
                                 <Link href="https://www.linkedin.com/in/mikhail-shytsko-029a5a297/" target="_blank"
-                                      rel="noopener noreferrer">
+                                    rel="noopener noreferrer">
                                     <Button
                                         variant="outline"
                                         size="icon"
                                         className="rounded-full border-red-900/50 text-white hover:bg-red-900/20"
                                     >
-                                        <Linkedin className="h-5 w-5"/>
+                                        <Linkedin className="h-5 w-5" />
                                         <span className="sr-only">LinkedIn</span>
                                     </Button>
                                 </Link>
@@ -173,7 +173,7 @@ export default function Portfolio() {
                                             className="lucide lucide-twitter"
                                         >
                                             <path
-                                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
                                         </svg>
                                         <span className="sr-only">X (Twitter)</span>
                                     </Button>
@@ -184,7 +184,7 @@ export default function Portfolio() {
                                         size="icon"
                                         className="rounded-full border-red-900/50 text-white hover:bg-red-900/20"
                                     >
-                                        <Github className="h-5 w-5"/>
+                                        <Github className="h-5 w-5" />
                                         <span className="sr-only">GitHub</span>
                                     </Button>
                                 </Link>
@@ -194,16 +194,16 @@ export default function Portfolio() {
                                         size="icon"
                                         className="rounded-full border-red-900/50 text-white hover:bg-red-900/20"
                                     >
-                                        <ExternalLink className="h-5 w-5"/>
+                                        <ExternalLink className="h-5 w-5" />
                                         <span className="sr-only">Linktr.ee</span>
                                     </Button>
                                 </Link>
                             </div>
                         </motion.div>
                         <motion.div
-                            initial={{opacity: 0, scale: 0.8}}
-                            animate={{opacity: 1, scale: 1}}
-                            transition={{duration: 0.6, delay: 0.2}}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
                             className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-4 border-[#c10000] bg-[#1a0033]"
                         >
                             <div className="absolute inset-0 flex items-center justify-center text-zinc-500"></div>
@@ -223,15 +223,15 @@ export default function Portfolio() {
                 {/* Summary Section */}
                 <section id="summary" className="py-12 md:py-24 border-t border-[#c10000] border-t-4">
                     <motion.div
-                        initial={{opacity: 0, y: 50}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                         className="space-y-8"
                     >
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
-                                <User className="h-5 w-5 text-[#c10000]"/>
+                                <User className="h-5 w-5 text-[#c10000]" />
                                 <Badge
                                     className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
                                     Professional Summary
@@ -240,7 +240,7 @@ export default function Portfolio() {
                             <h2 className="text-3xl font-bold tracking-tight">About Me</h2>
                         </div>
 
-                        <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}>
+                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
                             <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                 <CardContent className="pt-6">
                                     <p className="text-lg leading-relaxed">
@@ -249,16 +249,16 @@ export default function Portfolio() {
                                         that solve real user problems. Adept at applying clean architecture and rapid
                                         iteration to achieve meaningful results
                                         <span className="block mt-4 text-[#c10000] font-medium">
-                      Focused on creating value, not just writing code.
-                    </span>
+                                            Focused on creating value, not just writing code.
+                                        </span>
                                     </p>
                                 </CardContent>
                             </Card>
                         </motion.div>
 
                         {/* Meetera Co-founder Section */}
-                        <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}
-                                    className="mt-12">
+                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}
+                            className="mt-12">
                             <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                 <CardHeader>
                                     <div className="flex items-center gap-4">
@@ -280,7 +280,7 @@ export default function Portfolio() {
                                         <div className="break-words whitespace-normal max-w-full">
                                             <CardTitle
                                                 className="text-xl break-words max-w-full"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 Co-founder at meetera
                                             </CardTitle>
@@ -289,9 +289,9 @@ export default function Portfolio() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-[#c10000] hover:text-red-400 transition-colors flex items-center gap-1 mt-1 break-words max-w-full"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
-                                                <ExternalLink className="h-4 w-4"/>
+                                                <ExternalLink className="h-4 w-4" />
                                                 linktr.ee/meetera
                                             </Link>
                                         </div>
@@ -312,17 +312,17 @@ export default function Portfolio() {
 
                 {/* Experience Section */}
                 <section id="experience" className="py-12 md:py-24 border-t border-[#c10000] border-t-4"
-                         ref={experienceRef}>
+                    ref={experienceRef}>
                     <motion.div
-                        initial={{opacity: 0, y: 50}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                         className="space-y-8"
                     >
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
-                                <Briefcase className="h-5 w-5 text-[#c10000]"/>
+                                <Briefcase className="h-5 w-5 text-[#c10000]" />
                                 <Badge
                                     className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
                                     Experience
@@ -334,14 +334,103 @@ export default function Portfolio() {
 
                         <div className="space-y-6">
                             {/* Experience 1 */}
-                            <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}>
+                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
+                                <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
+                                    <CardHeader className="pb-2">
+                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                                            <CardTitle className="text-xl">Solutions Engineer, Slovenska Sporitelna, a.s.</CardTitle>
+                                            <Badge variant="outline" className="mt-2 md:mt-0 border-red-900/50 w-fit">
+                                                July 2025 - Today
+                                            </Badge>
+                                        </div>
+                                        <CardDescription className="text-zinc-400 text-lg">Project: Internal banking projects</CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="space-y-4">
+                                            <p className="text-zinc-400">
+                                                Owned performance of two microservices, accelerating single-request
+                                                latency by 20× and significantly reducing infrastructure costs. Solely
+                                                maintained and expanded an 85k-line codebase, delivering substantial
+                                                budget savings.
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-2">
+                                                <Badge variant="secondary" className="bg-[#1a0033] hover:bg-red-900/30">
+                                                    Spring WebFlux
+                                                </Badge>
+                                                <Badge variant="secondary" className="bg-[#1a0033] hover:bg-red-900/30">
+                                                    Reactive programming in Kotlin
+                                                </Badge>
+                                                <Badge variant="secondary" className="bg-[#1a0033] hover:bg-red-900/30">
+                                                    Performance optimization
+                                                </Badge>
+                                            </div>
+
+                                            <div>
+                                                <Button
+                                                    variant="ghost"
+                                                    className="p-0 h-auto text-[#c10000] hover:text-red-400 flex items-center gap-1"
+                                                    onClick={() => toggleExperience("exp1")}
+                                                >
+                                                    {expandedExperience === "exp1" ? "Show less" : "Show more"}
+                                                    <ChevronDown
+                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp1" ? "rotate-180" : ""}`}
+                                                    />
+                                                </Button>
+
+                                                <AnimatePresence>
+                                                    {expandedExperience === "exp1" && (
+                                                        <motion.div
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3 }}
+                                                            className="overflow-hidden"
+                                                        >
+                                                            <div className="pt-4 space-y-2">
+                                                                <h4 className="font-medium">Key Responsibilities:</h4>
+                                                                <ul className="list-disc pl-5 space-y-2 text-zinc-400">
+                                                                    <li>
+                                                                        Launched a monolithic application on Spring
+                                                                        WebFlux and Google Cloud Platform, capable of
+                                                                        handling over 15k RPs at peak load
+                                                                    </li>
+                                                                    <li>
+                                                                        Implemented streaming data encryption ‘on the
+                                                                        fly’, reducing unauthorised reads to 0 and
+                                                                        ensuring 100% EU GDPR compliance
+                                                                    </li>
+                                                                    <li>
+                                                                        Led a team of three developers and automated
+                                                                        CI/CD in GitLab, reducing deployment time from
+                                                                        12 minutes to 4 minutes without downtime
+                                                                    </li>
+                                                                </ul>
+
+                                                                <h4 className="font-medium pt-2">Technologies Used:</h4>
+                                                                <p className="text-zinc-400">
+                                                                    Worked with: Spring WebFlux, GCP, Firestore,
+                                                                    Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
+                                                                </p>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+
+                            {/* Experience 2 */}
+                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                     <CardHeader className="pb-2">
                                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                                             <CardTitle className="text-xl">Software Engineer, The Designery
                                                 s.r.o.</CardTitle>
                                             <Badge variant="outline" className="mt-2 md:mt-0 border-red-900/50 w-fit">
-                                                Apr 2025 - Present
+                                                Apr 2025 - July 2025
                                             </Badge>
                                         </div>
                                         <CardDescription className="text-zinc-400 text-lg">Project: Mental Health
@@ -382,10 +471,10 @@ export default function Portfolio() {
                                                 <AnimatePresence>
                                                     {expandedExperience === "exp1" && (
                                                         <motion.div
-                                                            initial={{height: 0, opacity: 0}}
-                                                            animate={{height: "auto", opacity: 1}}
-                                                            exit={{height: 0, opacity: 0}}
-                                                            transition={{duration: 0.3}}
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3 }}
                                                             className="overflow-hidden"
                                                         >
                                                             <div className="pt-4 space-y-2">
@@ -423,8 +512,8 @@ export default function Portfolio() {
                                 </Card>
                             </motion.div>
 
-                            {/* Experience 2 */}
-                            <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}>
+                            {/* Experience 3 */}
+                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                     <CardHeader className="pb-2">
                                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -473,10 +562,10 @@ export default function Portfolio() {
                                                 <AnimatePresence>
                                                     {expandedExperience === "exp2" && (
                                                         <motion.div
-                                                            initial={{height: 0, opacity: 0}}
-                                                            animate={{height: "auto", opacity: 1}}
-                                                            exit={{height: 0, opacity: 0}}
-                                                            transition={{duration: 0.3}}
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3 }}
                                                             className="overflow-hidden"
                                                         >
                                                             <div className="pt-4 space-y-2">
@@ -514,8 +603,8 @@ export default function Portfolio() {
                                 </Card>
                             </motion.div>
 
-                            {/* Experience 3 */}
-                            <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}>
+                            {/* Experience 4 */}
+                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                     <CardHeader className="pb-2">
                                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -564,10 +653,10 @@ export default function Portfolio() {
                                                 <AnimatePresence>
                                                     {expandedExperience === "exp3" && (
                                                         <motion.div
-                                                            initial={{height: 0, opacity: 0}}
-                                                            animate={{height: "auto", opacity: 1}}
-                                                            exit={{height: 0, opacity: 0}}
-                                                            transition={{duration: 0.3}}
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: "auto", opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3 }}
                                                             className="overflow-hidden"
                                                         >
                                                             <div className="pt-4 space-y-2">
@@ -613,15 +702,15 @@ export default function Portfolio() {
                 {/* Education Section */}
                 <section id="education" className="py-12 md:py-24 border-t border-[#c10000] border-t-4">
                     <motion.div
-                        initial={{opacity: 0, y: 50}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                         className="space-y-8"
                     >
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
-                                <GraduationCap className="h-5 w-5 text-[#c10000]"/>
+                                <GraduationCap className="h-5 w-5 text-[#c10000]" />
                                 <Badge
                                     className="px-3 py-1 text-sm bg-[#c10000]/10 text-[#c10000] border-[#c10000]/20 hover:bg-[#c10000]/20 hover:text-[#c10000]">
                                     Education
@@ -630,7 +719,7 @@ export default function Portfolio() {
                             <h2 className="text-3xl font-bold tracking-tight">Education & Additional Information</h2>
                         </div>
 
-                        <motion.div whileHover={{scale: 1.01}} transition={{type: "spring", stiffness: 300}}>
+                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
                             <Card className="bg-[#1a0033]/50 border-[#c10000] border-2">
                                 <CardHeader className="pb-2">
                                     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -752,12 +841,12 @@ export default function Portfolio() {
 
                 {/* Projects Section */}
                 <section id="projects" className="py-12 md:py-24 border-t border-[#c10000] border-t-4"
-                         ref={projectsRef}>
+                    ref={projectsRef}>
                     <motion.div
                         variants={container}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{once: true}}
+                        viewport={{ once: true }}
                         className="space-y-8"
                     >
                         <div className="space-y-2">
@@ -773,8 +862,8 @@ export default function Portfolio() {
 
                         <div className="grid gap-4 md:grid-cols-2">
                             {/* Project 1 */}
-                            <motion.div variants={item} whileHover={{scale: 1.02}}
-                                        transition={{type: "spring", stiffness: 300}}>
+                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2 h-full">
                                     <CardHeader>
                                         <CardTitle>JHMS | High-Performance JVM & System Monitoring API</CardTitle>
@@ -801,8 +890,8 @@ export default function Portfolio() {
                             </motion.div>
 
                             {/* Project 2 */}
-                            <motion.div variants={item} whileHover={{scale: 1.02}}
-                                        transition={{type: "spring", stiffness: 300}}>
+                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2 h-full">
                                     <CardHeader>
                                         <CardTitle>Endor | IoT Platform for Energy Efficiency</CardTitle>
@@ -829,8 +918,8 @@ export default function Portfolio() {
                             </motion.div>
 
                             {/* Project 3 */}
-                            <motion.div variants={item} whileHover={{scale: 1.02}}
-                                        transition={{type: "spring", stiffness: 300}}>
+                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2 h-full">
                                     <CardHeader>
                                         <CardTitle>Providentia | AI-Driven Predictive Analytics Suite</CardTitle>
@@ -856,8 +945,8 @@ export default function Portfolio() {
                             </motion.div>
 
                             {/* Project 4 */}
-                            <motion.div variants={item} whileHover={{scale: 1.02}}
-                                        transition={{type: "spring", stiffness: 300}}>
+                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}>
                                 <Card className="bg-[#1a0033]/50 border-[#c10000] border-2 h-full">
                                     <CardHeader>
                                         <CardTitle>Pulse | Retail Analytics & Inventory Management</CardTitle>
@@ -892,10 +981,10 @@ export default function Portfolio() {
                     ref={contactRef}
                 >
                     <motion.div
-                        initial={{opacity: 0, y: 50}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 0.5}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                         className="space-y-8 max-w-full break-words whitespace-normal"
                     >
                         <div className="space-y-2 max-w-full break-words whitespace-normal">
@@ -911,17 +1000,17 @@ export default function Portfolio() {
 
                         <div className="max-w-3xl mx-auto max-w-full break-words whitespace-normal">
                             <motion.div
-                                whileHover={{scale: 1.02}}
-                                transition={{type: "spring", stiffness: 300}}
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <Card
                                     className="bg-[#1a0033]/50 border-2 border-[#c10000] max-w-full break-words whitespace-normal"
-                                    style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                    style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                 >
                                     <CardHeader>
                                         <CardTitle
                                             className="break-words whitespace-normal"
-                                            style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                         >
                                             Contact Information
                                         </CardTitle>
@@ -930,11 +1019,11 @@ export default function Portfolio() {
                                         {/** Email **/}
                                         <div
                                             className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Mail className="h-5 w-5 text-[#c10000]"/>
+                                            <Mail className="h-5 w-5 text-[#c10000]" />
                                             <a
                                                 href="mailto:mikhail.shytsko@gmail.com"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 mikhail.shytsko@gmail.com
                                             </a>
@@ -943,13 +1032,13 @@ export default function Portfolio() {
                                         {/** LinkedIn **/}
                                         <div
                                             className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Linkedin className="h-5 w-5 text-[#c10000]"/>
+                                            <Linkedin className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://www.linkedin.com/in/mikhail-shytsko-029a5a297/"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 linkedin.com/in/mikhail-shytsko
                                             </Link>
@@ -958,13 +1047,13 @@ export default function Portfolio() {
                                         {/** GitHub **/}
                                         <div
                                             className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Github className="h-5 w-5 text-[#c10000]"/>
+                                            <Github className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://github.com/xfiive"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 github.com/xfiive
                                             </Link>
@@ -986,14 +1075,14 @@ export default function Portfolio() {
                                                 className="text-[#c10000]"
                                             >
                                                 <path
-                                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
                                             </svg>
                                             <Link
                                                 href="https://x.com/mikhailshytsko"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 x.com/mikhailshytsko
                                             </Link>
@@ -1002,13 +1091,13 @@ export default function Portfolio() {
                                         {/** Linktree **/}
                                         <div
                                             className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <ExternalLink className="h-5 w-5 text-[#c10000]"/>
+                                            <ExternalLink className="h-5 w-5 text-[#c10000]" />
                                             <Link
                                                 href="https://linktr.ee/mikhsh"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-white hover:text-[#c10000] transition-colors break-words whitespace-normal"
-                                                style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}
+                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
                                             >
                                                 linktr.ee/mikhsh
                                             </Link>
