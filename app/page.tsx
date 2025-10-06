@@ -370,16 +370,16 @@ export default function Portfolio() {
                                                 <Button
                                                     variant="ghost"
                                                     className="p-0 h-auto text-[#c10000] hover:text-red-400 flex items-center gap-1"
-                                                    onClick={() => toggleExperience("exp1")}
+                                                    onClick={() => toggleExperience("exp4")}
                                                 >
-                                                    {expandedExperience === "exp1" ? "Show less" : "Show more"}
+                                                    {expandedExperience === "exp4" ? "Show less" : "Show more"}
                                                     <ChevronDown
-                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp1" ? "rotate-180" : ""}`}
+                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp4" ? "rotate-180" : ""}`}
                                                     />
                                                 </Button>
 
                                                 <AnimatePresence>
-                                                    {expandedExperience === "exp1" && (
+                                                    {expandedExperience === "exp4" && (
                                                         <motion.div
                                                             initial={{ height: 0, opacity: 0 }}
                                                             animate={{ height: "auto", opacity: 1 }}
