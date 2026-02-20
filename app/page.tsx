@@ -872,6 +872,29 @@ export default function Portfolio() {
                                                     </a>
                                                     &nbsp;and got into top 3 startups at UVP Startup Finals
                                                 </li>
+
+                                                <li>
+                                                    Won 1st place at&nbsp;
+                                                    <a
+                                                        href="https://technologytransferdays.fit.cvut.cz/leaderboard"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
+                                                    >
+                                                        DDAccelerator&nbsp;Finals
+                                                    </a>
+                                                    &nbsp;with&nbsp;
+                                                    <a
+                                                        href="https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-white underline underline-offset-4 hover:text-zinc-200 break-words"
+                                                    >
+                                                        Seedfast
+                                                    </a>
+                                                    &nbsp;— representing Slovakia as the only startup from the
+                                                    country and winning 1st place among teams from 9 countries
+                                                </li>
                                             </ul>
                                         </div>
 
