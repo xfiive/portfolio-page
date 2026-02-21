@@ -84,7 +84,7 @@ export default function Portfolio() {
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="sticky top-0 z-50 w-full border-b border-[#c10000] border-b-4 bg-[#1a0033]/80 backdrop-blur"
+                className="fixed top-0 z-50 w-full border-b border-[#c10000] border-b-4 bg-[#1a0033]/80 backdrop-blur"
             >
                 <div className="container flex h-16 items-center justify-between">
                     <div className="font-bold text-xl">
@@ -112,7 +112,7 @@ export default function Portfolio() {
                     </nav>
                     <Link href="/cv.pdf" target="_blank" download>
                         <Button variant="outline"
-                            className="hidden md:flex border-red-900/50 text-white hover:bg-red-900/20 gap-2">
+                            className="flex border-red-900/50 text-white hover:bg-red-900/20 gap-2">
                             <Download className="h-4 w-4" />
                             Resume
                         </Button>
@@ -120,7 +120,7 @@ export default function Portfolio() {
                 </div>
             </motion.header>
 
-            <main className="container py-8 md:py-12 relative z-10">
+            <main className="container pt-24 pb-8 md:pb-12 relative z-10">
                 {/* Hero Section */}
                 <section id="about" className="py-12 md:py-24" ref={heroRef}>
                     <motion.div style={{ scale: heroScale, y: heroY }} className="grid gap-8 md:grid-cols-2 items-center">
@@ -295,9 +295,9 @@ export default function Portfolio() {
                                     <p className="text-zinc-400">
                                         Developers waste ~12 hours a week hunting for test data. Seedfast fixes that:
                                         one CLI command reads your PostgreSQL schema, understands relationships and
-                                        constraints, and fills every table with realistic, coherent data in under two
-                                        minutes. No config files, no seed scripts, no boilerplate. As a founder, I'm
-                                        tackling a $8.7B synthetic data market where 90% of teams still rely on tools
+                                        constraints, and fills every table with realistic, coherent data in under
+                                        3 minutes. No config files, no seed scripts, no boilerplate. As a founder, I'm
+                                        tackling a $4.7B synthetic data market where 90% of teams still rely on tools
                                         built 15+ years ago, shipping AI-native developer tooling with MCP integration,
                                         CI/CD pipelines, and cross-platform support out of the box.
                                     </p>
