@@ -420,6 +420,14 @@ export default function Portfolio() {
                                                                         stage
                                                                     </li>
                                                                     <li>
+                                                                        Developed high-load, data-driven interfaces for
+                                                                        internal analytical tools using React, Redux,
+                                                                        TypeScript, and REST API integration, deeply
+                                                                        leveraging the bank&apos;s proprietary UI component
+                                                                        library with custom theming and complex form
+                                                                        workflows
+                                                                    </li>
+                                                                    <li>
                                                                         Identified talent gaps, drove the hiring process from
                                                                         role definitions to final offers (20+ candidates
                                                                         screened), and built a 3-person squad. Introduced
