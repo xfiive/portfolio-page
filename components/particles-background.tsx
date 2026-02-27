@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
-
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react"
 
 interface Particle {
   x: number
@@ -16,41 +14,41 @@ interface Particle {
   maxLife?: number
 }
 
-export default function ParticlesBackground() {
+export interface ParticlesHandle {
+  burst: (clientX: number, clientY: number) => void
+}
+
+const ParticlesBackground = forwardRef<ParticlesHandle>(function ParticlesBackground(_, ref) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particles = useRef<Particle[]>([])
   const particleCount = 100
-  const colors = ["#c10000", "#ff0000", "#ff3333", "#ff6666"]
+  const colors = ["#ee0000", "#ff0000", "#ff3333", "#ff6666"]
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null)
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+  useImperativeHandle(ref, () => ({
+    burst(clientX: number, clientY: number) {
+      const canvas = canvasRef.current
+      if (!canvas) return
 
-    // Don't create particles if clicking on interactive elements
-    if ((e.target as HTMLElement).closest('a, button, input, textarea, [role="button"], .no-particles')) {
-      return
-    }
+      const rect = canvas.getBoundingClientRect()
+      const x = clientX - rect.left
+      const y = clientY - rect.top
 
-    const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    // Create a burst of particles
-    for (let i = 0; i < 20; i++) {
-      particles.current.push({
-        x,
-        y,
-        size: Math.random() * 4 + 1,
-        speedX: Math.random() * 4 - 2,
-        speedY: Math.random() * 4 - 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: 0.8,
-        life: 0,
-        maxLife: Math.random() * 60 + 30, // Frames until particle disappears
-      })
-    }
-  }
+      for (let i = 0; i < 20; i++) {
+        particles.current.push({
+          x,
+          y,
+          size: Math.random() * 4 + 1,
+          speedX: Math.random() * 4 - 2,
+          speedY: Math.random() * 4 - 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 0.8,
+          life: 0,
+          maxLife: Math.random() * 60 + 30,
+        })
+      }
+    },
+  }))
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -61,8 +59,8 @@ export default function ParticlesBackground() {
 
     // Set canvas to full screen
     const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
     }
 
     window.addEventListener("resize", handleResize)
@@ -177,11 +175,8 @@ export default function ParticlesBackground() {
   return (
       <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
         <canvas ref={canvasRef} className="w-full h-full" />
-        <div
-            className="absolute top-0 left-0 w-full h-full pointer-events-auto"
-            onClick={handleClick}
-            style={{ cursor: "default" }}
-        />
       </div>
   )
-}
+})
+
+export default ParticlesBackground

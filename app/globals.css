@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 270 50% 10%;
-    --foreground: 0 0% 98%;
+    --background: 267 100% 9%;
+    --foreground: 0 0% 100%;
 
-    --card: 270 50% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 267 100% 9%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 270 50% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 267 100% 9%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 80% 50%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 0 100% 47%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 270 50% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 267 55% 16%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 270 30% 20%;
-    --muted-foreground: 270 5% 65%;
+    --muted: 267 37% 23%;
+    --muted-foreground: 265 15% 66%;
 
-    --accent: 270 30% 20%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 267 37% 23%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 50% 20%;
-    --input: 270 30% 20%;
-    --ring: 0 80% 50%;
+    --border: 266 28% 30%;
+    --input: 267 37% 23%;
+    --ring: 0 100% 47%;
 
     --radius: 0.5rem;
   }
@@ -55,16 +55,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a0033;
+  background: #15002e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c10000;
+  background: #ee0000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a00000;
+  background: #cc0000;
 }
 
 /* Fix badge hover effect */
@@ -73,5 +73,5 @@ html {
 }
 
 .badge:hover {
-  background-color: rgba(193, 0, 0, 0.2) !important;
+  background-color: rgba(238, 0, 0, 0.2) !important;
 }
