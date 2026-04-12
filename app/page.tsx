@@ -252,10 +252,10 @@ export default function Portfolio() {
                             <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
                                 <CardContent className="pt-6">
                                     <p className="text-lg leading-relaxed">
-                                        Product-oriented backend developer with deep experience in Spring and
-                                        passion for building scalable systems
-                                        that solve real user problems. Adept at applying clean architecture and rapid
-                                        iteration to achieve meaningful results
+                                        Product-oriented engineer building AI-native systems at the intersection of
+                                        scalable backend architecture and intelligent automation. Deep experience with
+                                        Spring and Python ecosystems, from high-load banking microservices serving 2M+
+                                        customers to LLM-powered developer tooling.
                                         <span className="block mt-4 text-[#ee0000] font-medium">
                                             Focused on creating value, not just writing code.
                                         </span>
@@ -301,13 +301,14 @@ export default function Portfolio() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-[#a79cb6]">
-                                        Developers waste ~12 hours a week hunting for test data. Seedfast fixes that:
-                                        one CLI command reads your PostgreSQL schema, understands relationships and
-                                        constraints, and fills every table with realistic, coherent data in under
-                                        3 minutes. No config files, no seed scripts, no boilerplate. As a founder, I'm
-                                        tackling a $4.7B synthetic data market where 90% of teams still rely on tools
-                                        built 15+ years ago, shipping AI-native developer tooling with MCP integration,
-                                        CI/CD pipelines, and cross-platform support out of the box.
+                                        Founded Seedfast — an AI-native platform powered by LLM APIs that generates
+                                        large-scale synthetic datasets for compliance-sensitive industries (finance,
+                                        pharma, medtech) where production data cannot be used due to regulatory
+                                        restrictions, does not yet exist, or is insufficient for testing, analytics,
+                                        or AI training. Reads database schemas and produces realistic,
+                                        relationship-aware data in under 3 minutes with zero configuration. Won 1st
+                                        place at DDAccelerator Finals as the only Slovak startup competing across
+                                        9 countries.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -353,25 +354,25 @@ export default function Portfolio() {
                                     <CardContent>
                                         <div className="space-y-4">
                                             <p className="text-[#a79cb6]">
-                                                Built a greenfield Kafka service from a raw business spec, saving the
-                                                bank over 300K EUR by delivering in-house what was previously outsourced.
-                                                Took over two high-load microservices from external vendors as the sole
-                                                engineer on the bank's side, and grew a team from zero to three engineers
-                                                that doubled delivery throughput within one quarter.
+                                                Saved the bank 300K+ EUR by replacing an outsourced workflow with an
+                                                in-house Kafka pipeline. Cut response times by 85% for services serving
+                                                2M+ customers. Built AI-driven data pipelines for credit data validation
+                                                and piloted AI-based KYC liveness detection. Grew a team from zero to
+                                                three engineers that doubled delivery throughput.
                                             </p>
 
                                             <div className="flex flex-wrap gap-2">
                                                 <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Kotlin
+                                                    Spring Ecosystem
                                                 </Badge>
                                                 <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Spring WebFlux
+                                                    Apache Kafka
                                                 </Badge>
                                                 <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Product Ownership
+                                                    Python
                                                 </Badge>
                                                 <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Identity Verification
+                                                    LLMs
                                                 </Badge>
                                                 <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
                                                     Hiring & Mentoring
@@ -403,54 +404,46 @@ export default function Portfolio() {
                                                                 <h4 className="font-medium">Key Responsibilities:</h4>
                                                                 <ul className="list-disc pl-5 space-y-2 text-[#a79cb6]">
                                                                     <li>
-                                                                        Took a one-page business spec and independently
-                                                                        delivered a production service: identified gaps the
-                                                                        spec didn't cover, challenged requirements with
-                                                                        stakeholders, made architecture trade-offs, and
-                                                                        launched a Kafka pipeline processing 50K+ daily
-                                                                        events that replaced an entire manual operations
-                                                                        workflow, saving the bank 300K+ EUR compared to
-                                                                        outsourcing
+                                                                        Saved the bank 300K+ EUR by replacing an outsourced
+                                                                        workflow with an in-house Kafka pipeline processing
+                                                                        50K+ daily events — took a one-page business spec,
+                                                                        independently identified gaps, challenged requirements
+                                                                        with stakeholders, and delivered a production-ready
+                                                                        service end-to-end
                                                                     </li>
                                                                     <li>
-                                                                        Inherited two high-load microservices from external
-                                                                        vendors and became the sole engineer responsible for
-                                                                        their development and stability on the bank's side,
-                                                                        driving optimizations that cut infrastructure costs
-                                                                        and reduced response times by 85%, improving SLA
-                                                                        performance for 2M+ customers
+                                                                        Cut response times by 85% and reduced infrastructure
+                                                                        costs for two high-load applications serving 2M+
+                                                                        customers by taking sole ownership of vendor-inherited
+                                                                        services and driving targeted performance optimizations
+                                                                        that improved SLA compliance bank-wide
                                                                     </li>
                                                                     <li>
-                                                                        Developed an internal pilot for liveness detection
-                                                                        with anti-spoofing and face matching against
-                                                                        government-issued IDs, validating a new approach to
-                                                                        KYC compliance and fraud prevention at the onboarding
-                                                                        stage
+                                                                        Accelerated lending decisions by building AI-driven
+                                                                        data pipelines for automated credit data validation
+                                                                        and risk scoring, replacing manual review of
+                                                                        large-volume credit datasets with LLM-based processing
                                                                     </li>
                                                                     <li>
-                                                                        Developed high-load, data-driven interfaces for
-                                                                        internal analytical tools using React, Redux,
-                                                                        TypeScript, and REST API integration, deeply
-                                                                        leveraging the bank&apos;s proprietary UI component
-                                                                        library with custom theming and complex form
-                                                                        workflows
+                                                                        Piloted AI-based liveness detection and face matching
+                                                                        for KYC, validating a new fraud prevention approach
+                                                                        at the onboarding stage
                                                                     </li>
                                                                     <li>
-                                                                        Identified talent gaps, drove the hiring process from
-                                                                        role definitions to final offers (20+ candidates
-                                                                        screened), and built a 3-person squad. Introduced
-                                                                        structured code reviews with mandatory approval gates,
-                                                                        trunk-based development with short-lived feature
-                                                                        branches, pair programming sessions for knowledge
-                                                                        sharing, and sprint retrospectives with tracked action
-                                                                        items, which doubled feature delivery throughput
-                                                                        within the first quarter
+                                                                        Doubled feature delivery throughput by building a
+                                                                        3-person engineering team from scratch — from role
+                                                                        definitions to final offers — and introducing
+                                                                        structured code reviews and sprint retrospectives
+                                                                    </li>
+                                                                    <li>
+                                                                        Built data-driven analytical interfaces for internal
+                                                                        banking tools using React, TypeScript, and REST APIs
                                                                     </li>
                                                                 </ul>
 
                                                                 <h4 className="font-medium pt-2">Technologies Used:</h4>
                                                                 <p className="text-[#a79cb6]">
-                                                                    Spring WebFlux, Kotlin, React, TypeScript, Kafka, OracleDB, Podman, GitLab
+                                                                    Spring Ecosystem, Apache Kafka, Podman, GitLab, Python, Kotlin, Java, React, LLMs
                                                                 </p>
                                                             </div>
                                                         </motion.div>
@@ -918,18 +911,16 @@ export default function Portfolio() {
                                             <h4 className="font-medium text-lg mb-2">Languages:</h4>
                                             <ul className="list-disc pl-5 space-y-2 text-[#a79cb6] break-words">
                                                 <li>
-                                                    <span className="text-white">Russian</span> (native)
+                                                    <span className="text-white">English</span>
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">Belarussian</span> (native)
+                                                    <span className="text-white">Slovak</span>
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">Slovak</span> (professional working
-                                                    proficiency)
+                                                    <span className="text-white">Russian</span>
                                                 </li>
                                                 <li>
-                                                    <span className="text-white">English</span> (full professional
-                                                    proficiency — C1 level, IELTS Academic band 8.0)
+                                                    <span className="text-white">Belarussian</span>
                                                 </li>
                                             </ul>
                                         </div>
