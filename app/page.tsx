@@ -221,6 +221,8 @@ export default function Portfolio() {
                                 alt="Mikhail Shytsko"
                                 width={400}
                                 height={400}
+                                priority
+                                fetchPriority="high"
                                 className="object-cover object-bottom w-full h-full"
                             />
                         </motion.div>
@@ -901,7 +903,16 @@ export default function Portfolio() {
                                                     >
                                                         Seedfast
                                                     </a>
-                                                    &nbsp;— representing Slovakia as the only startup from the
+                                                    &nbsp;(
+                                                    <a
+                                                        href="https://seedfa.st"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
+                                                    >
+                                                        seedfa.st
+                                                    </a>
+                                                    ) — representing Slovakia as the only startup from the
                                                     country and winning 1st place among teams from 9 countries
                                                 </li>
                                             </ul>
@@ -953,6 +964,46 @@ export default function Portfolio() {
                         </div>
 
                         <div className="grid gap-4 md:grid-cols-2">
+                            {/* Project — Seedfast (founder) */}
+                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 300 }}>
+                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
+                                    <CardHeader>
+                                        <CardTitle>
+                                            <Link
+                                                href="https://seedfa.st"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-[#ee0000] transition-colors inline-flex items-center gap-1"
+                                            >
+                                                Seedfast | Schema-Aware Data Generator
+                                                <ExternalLink className="h-4 w-4" />
+                                            </Link>
+                                        </CardTitle>
+                                        <CardDescription className="text-[#a79cb6]">
+                                            AI-native synthetic data generator for PostgreSQL. Reads database
+                                            schemas and produces referentially-consistent test data in under 3
+                                            minutes — built for compliance-sensitive industries where production
+                                            data cannot leave secure environments. 1st place at DDAccelerator
+                                            Finals (9 countries).
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex flex-wrap gap-2 mb-2">
+                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
+                                                PostgreSQL
+                                            </Badge>
+                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
+                                                LLM
+                                            </Badge>
+                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
+                                                CLI
+                                            </Badge>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+
                             {/* Project 1 */}
                             <motion.div variants={item} whileHover={{ scale: 1.02 }}
                                 transition={{ type: "spring", stiffness: 300 }}>

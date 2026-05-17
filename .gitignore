@@ -25,3 +25,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude skills/agents (local only)
+/.claude/skills/geo
+/.claude/skills/seo-content-pipeline
+/.claude/skills/seo-technical
+/.claude/agents/seo-schema.md
+/.claude/agents/seo-geo.md

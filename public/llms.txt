@@ -1,0 +1,28 @@
+# Mikhail Shytsko
+
+> Solutions & AI Engineer at Slovenská sporiteľňa (Slovakia's largest retail bank, 2M+ customers). Founder of Seedfast, a schema-aware synthetic-data generator for PostgreSQL targeting compliance-sensitive industries where production data cannot be copied into development environments.
+
+## About
+
+- [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, education, projects, and contact form.
+- [Resume PDF](https://mikhail.shytsko.com/cv.pdf): Downloadable resume.
+
+## Projects
+
+- [Seedfast](https://seedfa.st): AI-native synthetic data generator. Reads PostgreSQL schemas and produces referentially-consistent fake data in under 3 minutes with zero configuration. Built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. 1st place at DDAccelerator Finals (9 countries).
+- [DDAccelerator article on Seedfast](https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli)
+
+## Profiles
+
+- [GitHub](https://github.com/xfiive)
+- [LinkedIn](https://www.linkedin.com/in/mikhail-shytsko/)
+- [X / Twitter](https://x.com/mikhailshytsko)
+- [DZone](https://dzone.com/users/5530357)
+- [Linktree](https://linktr.ee/mikhsh)
+
+## Expertise
+
+- Backend architecture: Spring Framework, Python, high-load microservices
+- AI / LLM engineering: LLM-powered developer tooling, AI-native systems
+- Databases: PostgreSQL, schema-aware data generation
+- Domain: Banking and regulated-industry software
