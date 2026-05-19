@@ -9,40 +9,60 @@ const SITE_TITLE = "Mikhail Shytsko — Software Engineer | Portfolio"
 const SITE_DESCRIPTION =
   "Mikhail Shytsko — Solutions & AI Engineer at Slovenská sporiteľňa. Founder of Seedfast, a schema-aware data generator for PostgreSQL."
 
-const personLd = {
+const profileLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}/#person`,
-  name: SITE_NAME,
-  url: SITE_URL,
-  image: `${SITE_URL}/avatar.jpg`,
-  jobTitle: "Solutions & AI Engineer",
-  description:
-    "Software engineer building AI-native systems and high-load backend services. Founder of Seedfast, a schema-aware data generator for PostgreSQL.",
-  worksFor: {
-    "@type": "Organization",
-    name: "Slovenská sporiteľňa",
-    url: "https://www.slsp.sk",
-    description: "Slovakia's largest retail bank, serving 2M+ customers.",
-  },
-  knowsAbout: [
-    "Software Engineering",
-    "Backend Architecture",
-    "Spring Framework",
-    "Python",
-    "Microservices",
-    "LLM Engineering",
-    "AI Systems",
-    "PostgreSQL",
-    "Schema-aware Data Generation",
-  ],
-  sameAs: [
-    "https://github.com/xfiive",
-    "https://x.com/mikhailshytsko",
-    "https://www.linkedin.com/in/mikhail-shytsko/",
-    "https://seedfa.st",
-    "https://dzone.com/users/5530357",
-    "https://linktr.ee/mikhsh",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profilepage`,
+      mainEntity: { "@id": `${SITE_URL}/#person` },
+      dateModified: "2026-05-19",
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: SITE_NAME,
+      givenName: "Mikhail",
+      familyName: "Shytsko",
+      url: SITE_URL,
+      image: `${SITE_URL}/avatar.jpg`,
+      jobTitle: "Founder, Seedfast",
+      description:
+        "Software engineer founding Seedfast, an AI-native CLI for database seeding. Also Solutions Engineer at Slovenská sporiteľňa.",
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Technical University of Košice",
+        url: "https://www.tuke.sk/",
+      },
+      worksFor: [
+        { "@id": "https://seedfa.st/#organization" },
+        {
+          "@type": "Organization",
+          name: "Slovenská sporiteľňa",
+          url: "https://www.slsp.sk",
+          description: "Slovakia's largest retail bank, serving 2M+ customers.",
+        },
+      ],
+      knowsAbout: [
+        "Software Engineering",
+        "Backend Architecture",
+        "Spring Framework",
+        "Python",
+        "Microservices",
+        "LLM Engineering",
+        "AI Systems",
+        "PostgreSQL",
+        "Schema-aware Data Generation",
+      ],
+      sameAs: [
+        "https://seedfa.st/about",
+        "https://www.linkedin.com/in/mikhail-shytsko/",
+        "https://github.com/xfiive",
+        "https://x.com/mikhailshytsko",
+        "https://hackernoon.com/u/mikhail-shytsko",
+        "https://linktr.ee/mikhsh",
+      ],
+    },
   ],
 }
 
@@ -155,7 +175,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#1a0033] font-sans antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profileLd) }}
         />
         <script
           type="application/ld+json"

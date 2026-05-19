@@ -146,9 +146,16 @@ export default function Portfolio() {
                                 Hi, I'm <span className="text-[#ee0000]">Mikhail Shytsko</span>
                             </h1>
                             <p className="text-lg text-[#a79cb6] max-w-md">
-                                Passionate software engineer with expertise in building modern web applications. I
-                                specialize in
-                                creating elegant solutions to complex problems.
+                                Software engineer building{" "}
+                                <Link
+                                    href="https://seedfa.st"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[#ee0000] hover:text-[#ff3333] underline underline-offset-4"
+                                >
+                                    Seedfast
+                                </Link>
+                                . Also Solutions Engineer at Slovenská sporiteľňa. BS in Computer Science from Technical University of Košice (2025).
                             </p>
                             <div className="flex gap-4">
                                 <Link href="https://www.linkedin.com/in/mikhail-shytsko/" target="_blank"
@@ -254,10 +261,7 @@ export default function Portfolio() {
                             <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
                                 <CardContent className="pt-6">
                                     <p className="text-lg leading-relaxed">
-                                        Product-oriented engineer building AI-native systems at the intersection of
-                                        scalable backend architecture and intelligent automation. Deep experience with
-                                        Spring and Python ecosystems, from high-load banking microservices serving 2M+
-                                        customers to LLM-powered developer tooling.
+                                        Working on AI-native systems and scalable backend architecture. Spring and Python background.
                                         <span className="block mt-4 text-[#ee0000] font-medium">
                                             Focused on creating value, not just writing code.
                                         </span>
