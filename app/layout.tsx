@@ -136,9 +136,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/avatar.jpg",
-        width: 400,
-        height: 400,
-        alt: "Mikhail Shytsko",
+        width: 640,
+        height: 640,
+        alt: "Mikhail Shytsko — Software Engineer",
       },
     ],
   },
