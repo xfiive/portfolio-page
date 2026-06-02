@@ -28,7 +28,7 @@ const profileLd = {
       image: `${SITE_URL}/avatar.jpg`,
       jobTitle: "Founder, Seedfast",
       description:
-        "Software engineer founding Seedfast, an AI-native CLI for database seeding. Also Solutions Engineer at Slovenská sporiteľňa.",
+        "Software engineer founding Seedfast, an AI-native CLI for database seeding. Also Solutions & AI Engineer at Slovenská sporiteľňa.",
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "Technical University of Košice",

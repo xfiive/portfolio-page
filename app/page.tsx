@@ -155,7 +155,7 @@ export default function Portfolio() {
                                 >
                                     Seedfast
                                 </Link>
-                                . Also Solutions Engineer at Slovenská sporiteľňa. BS in Computer Science from Technical University of Košice (2025).
+                                . Also Solutions & AI Engineer at Slovenská sporiteľňa. BS in Computer Science from Technical University of Košice (2025).
                             </p>
                             <div className="flex gap-4">
                                 <Link href="https://www.linkedin.com/in/mikhail-shytsko/" target="_blank"
@@ -350,7 +350,7 @@ export default function Portfolio() {
                                 <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
                                     <CardHeader className="pb-2">
                                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                            <CardTitle className="text-xl">Solutions Engineer, Slovenska Sporitelna, a.s.</CardTitle>
+                                            <CardTitle className="text-xl">Solutions & AI Engineer, Slovenska Sporitelna, a.s.</CardTitle>
                                             <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
                                                 July 2025 - Today
                                             </Badge>
