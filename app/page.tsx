@@ -324,19 +324,11 @@ function Worked() {
                     i={1}
                     className="mt-5 grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-2 font-head text-[clamp(1.75rem,4vw,3rem)] font-semibold tracking-[-0.02em] sm:grid-cols-[1fr_auto_1fr]"
                 >
-                    <a
-                        href="https://www.slsp.sk/"
-                        target="_blank"
-                        rel="noopener"
-                        className="inline-flex items-center gap-2 leading-[1.08] transition-colors duration-300 ease-premium hover:text-ember-deep sm:justify-self-end"
-                    >
-                        <span className="sm:text-right">
-                            Slovenská{" "}
-                            <br className="hidden sm:inline" />
-                            sporiteľňa
-                        </span>
-                        <ArrowUpRight className="h-[0.7em] w-[0.7em] opacity-70" />
-                    </a>
+                    <span className="leading-[1.08] sm:justify-self-end sm:text-right">
+                        Slovenská{" "}
+                        <br className="hidden sm:inline" />
+                        sporiteľňa
+                    </span>
                     <span className="text-ember-deep" aria-hidden="true">
                         ·
                     </span>
