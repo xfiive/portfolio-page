@@ -1,28 +1,37 @@
 # Mikhail Shytsko
 
-> Solutions & AI Engineer at Slovenská sporiteľňa (Slovakia's largest retail bank, 2M+ customers). Founder of Seedfast, a schema-aware synthetic-data generator for PostgreSQL targeting compliance-sensitive industries where production data cannot be copied into development environments.
+> Software & AI Engineer based in Bratislava, Slovakia. Solutions & AI Engineer at Slovenská sporiteľňa (Slovakia's largest retail bank, 2M+ customers) since July 2025. Founder of Seedfast — a schema-aware synthetic test-data generator for PostgreSQL for compliance-sensitive industries — since October 2025. 1st place at DDAccelerator Finals 2026 (Intelligent Digital Technology category, only Slovak startup among 9 countries).
 
 ## About
 
-- [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, education, projects, and contact form.
+- [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, projects, education, and contact links. Updated June 2026.
 - [Resume PDF](https://mikhail.shytsko.com/cv.pdf): Downloadable resume.
 
 ## Projects
 
-- [Seedfast](https://seedfa.st): AI-native synthetic data generator. Reads PostgreSQL schemas and produces referentially-consistent fake data in under 3 minutes with zero configuration. Built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. 1st place at DDAccelerator Finals (9 countries).
+- [Seedfast](https://seedfa.st): Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. Agentic code-execution generation core with a GEPA-based self-optimizing eval harness that raised generated-data quality from 28% to 73% on a multi-dimensional benchmark. Ships a developer-facing Go CLI and an MCP server. 1st place at DDAccelerator Finals 2026.
 - [DDAccelerator article on Seedfast](https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli)
+
+## Experience
+
+- Slovenská sporiteľňa, Solutions & AI Engineer (Jul 2025 — present): MCP-based AI assistant for corporate lending — a least-privilege, fully auditable MCP tool layer over Azure OpenAI; change-detection across products, limits, collateral and client data; six-figure cost reduction via an in-house Kafka pipeline; 85% faster responses for two high-load services serving 2M+ customers.
+- Seedfast, Founder (Oct 2025 — present): see Projects above.
 
 ## Profiles
 
 - [GitHub](https://github.com/xfiive)
 - [LinkedIn](https://www.linkedin.com/in/mikhail-shytsko/)
 - [X / Twitter](https://x.com/mikhailshytsko)
-- [DZone](https://dzone.com/users/5530357)
+- [Hackernoon](https://hackernoon.com/u/mikhail-shytsko)
 - [Linktree](https://linktr.ee/mikhsh)
 
 ## Expertise
 
-- Backend architecture: Spring Framework, Python, high-load microservices
-- AI / LLM engineering: LLM-powered developer tooling, AI-native systems
-- Databases: PostgreSQL, schema-aware data generation
-- Domain: Banking and regulated-industry software
+- AI / LLM engineering: agentic LLM applications, MCP-based agents and tooling, LLM evaluation (GEPA, LLM-as-judge), LangGraph
+- Backend architecture: Spring Framework (Kotlin/Java), Python, Go, Apache Kafka, high-load microservices
+- Databases: PostgreSQL, schema-aware synthetic data generation
+- Domain: banking and regulated-industry software
+
+## Languages
+
+- English, Slovak, Russian, Belarusian
