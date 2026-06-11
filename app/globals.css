@@ -7,32 +7,32 @@
     --background: 267 100% 9%;
     --foreground: 0 0% 100%;
 
-    --card: 267 100% 9%;
+    --card: 267 73% 12%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 267 100% 9%;
+    --popover: 267 73% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 0 100% 47%;
+    --primary: 0 100% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 267 55% 16%;
+    --secondary: 267 73% 12%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 267 37% 23%;
-    --muted-foreground: 265 15% 66%;
+    --muted: 264 50% 20%;
+    --muted-foreground: 270 23% 73%;
 
-    --accent: 267 37% 23%;
+    --accent: 264 50% 20%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 100% 47%;
+    --destructive: 0 100% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 266 28% 30%;
-    --input: 267 37% 23%;
-    --ring: 0 100% 47%;
+    --border: 264 50% 20%;
+    --input: 264 50% 20%;
+    --ring: 0 100% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 }
 
@@ -59,19 +59,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ee0000;
+  background: #f40000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #cc0000;
-}
-
-/* Fix badge hover effect */
-.badge {
-  transition: background-color 0.2s ease;
-}
-
-.badge:hover {
-  background-color: rgba(238, 0, 0, 0.2) !important;
+  background: #c00000;
 }

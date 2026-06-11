@@ -1,1284 +1,719 @@
 "use client"
-import Link from "next/link"
+
 import Image from "next/image"
-import {
-    Github,
-    Linkedin,
-    Mail,
-    ExternalLink,
-    ChevronDown,
-    Download,
-    Briefcase,
-    GraduationCap,
-    User,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { useState, useRef, useCallback } from "react"
-import ParticlesBackground, { type ParticlesHandle } from "@/components/particles-background"
+import { ArrowUpRight, ChevronDown, Download } from "lucide-react"
+import { MotionConfig, motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import type React from "react"
 
-export default function Portfolio() {
-    const [expandedExperience, setExpandedExperience] = useState<string | null>(null)
+const EASE = [0.16, 1, 0.3, 1] as const
 
-    const containerRef = useRef(null)
-    const particlesRef = useRef<ParticlesHandle>(null)
+const CONTAINER = "mx-auto w-full max-w-6xl px-6 md:px-8"
 
-    const handleContainerClick = useCallback((e: React.MouseEvent) => {
-        if ((e.target as HTMLElement).closest('a, button, input, textarea, [role="button"], .no-particles')) {
-            return
-        }
-        particlesRef.current?.burst(e.clientX, e.clientY)
-    }, [])
-    const heroRef = useRef(null)
-    const experienceRef = useRef(null)
-    const projectsRef = useRef(null)
-    const contactRef = useRef(null)
+const BTN =
+    "inline-flex items-center gap-2.5 rounded-xl border border-transparent px-[22px] py-3.5 font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] transition-all duration-300 ease-premium hover:-translate-y-px"
 
-    const { scrollYProgress } = useScroll()
-    const y1 = useTransform(scrollYProgress, [0, 1], [0, -100])
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, -50])
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 0.5, 0])
+/* ---------------------------------- data ---------------------------------- */
 
-    const { scrollYProgress: heroScrollProgress } = useScroll({
-        target: heroRef,
-        offset: ["start end", "end start"],
-    })
+const NAV = ["About", "Experience", "Projects", "Education"]
 
-    const heroY = useTransform(heroScrollProgress, [0, 1], [100, -100])
-    const heroScale = useTransform(heroScrollProgress, [0, 0.5], [0.8, 1])
+const EXPERIENCE = [
+    {
+        role: "Solutions & AI Engineer",
+        org: "Slovenská sporiteľňa",
+        date: "Jul 2025 — Present",
+        summary: "MCP-based AI tooling · High-load banking platforms · Kafka pipelines.",
+        bullets: [
+            "Designed and built an MCP-based AI assistant that summarizes and cross-references corporate-lending data across internal banking systems — replacing slow, manual multi-system lookups.",
+            "Architected the AI's data access as a least-privilege, fully auditable MCP tool layer (Azure OpenAI behind a gateway) — safe inside a regulated bank without touching the core approval workflow.",
+            "Built change-detection that surfaces and explains shifts across products, limits, collateral and client data, so reviewers catch material changes they'd otherwise miss.",
+            "Delivered a six-figure cost reduction by replacing a legacy workflow with an in-house Kafka pipeline.",
+            "Cut response times 85% for two high-load services serving 2M+ customers.",
+        ],
+        tags: ["Kotlin", "Spring", "MCP", "Azure OpenAI", "Apache Kafka", "Podman", "React"],
+    },
+    {
+        role: "Founding AI Engineer",
+        org: "Seedfast",
+        date: "Oct 2025 — Present",
+        summary: "Agentic data generation · self-optimizing LLM evals · 1st at DDAccelerator.",
+        bullets: [
+            "Built an AI system that generates realistic, referentially-correct data for any database — sparing AI, QA and dev teams days of manual data-engineering per dataset, in a single run.",
+            "Re-architected the generation core into an agentic code-execution model — an LLM that writes and runs its own data-generation code — with independent verification that eliminated a class of silent data-integrity failures.",
+            "Engineered a GEPA-based self-optimizing eval harness (deterministic checks + LLM-as-judge) that more than doubled the combined success / quality / speed score on held-out evaluation.",
+            "Raised generated-data quality from 28% to 73% on a multi-dimensional benchmark, with locale-aware output in any language.",
+            "Shipped the developer-facing Go CLI and an MCP server — letting engineers and AI agents run Seedfast in CI/CD and agentic workflows.",
+        ],
+        tags: ["Python", "Go", "LangGraph", "GEPA", "MCP", "OpenAI", "LangSmith", "AWS"],
+    },
+    {
+        role: "Software Engineer",
+        org: "The Designery s.r.o.",
+        date: "Apr — Jul 2025",
+        summary: "GDPR-first backend for a mental-health startup.",
+        bullets: [
+            "Built a secure, EU GDPR-compliant backend from scratch on Spring WebFlux + GCP, encrypting sensitive patient data in real time.",
+            "Automated a CI/CD pipeline that cut deploys from 12 to 4 minutes.",
+        ],
+        tags: ["Java", "Spring WebFlux", "GCP", "Firestore", "Firebase Auth"],
+    },
+    {
+        role: "Software Engineer",
+        org: "VitSBS",
+        date: "May — Oct 2024",
+        summary: "Certification automation + GraalPy trend analytics.",
+        bullets: [
+            "Automated equipment certification, cutting document-certification time ~50%.",
+            "Built GraalPy trend analytics that accelerated product decisions ~25%.",
+        ],
+        tags: ["Java", "Spring", "GraalVM / GraalPy", "PostgreSQL", "MongoDB", "Docker"],
+    },
+    {
+        role: "Backend Developer",
+        org: "ArenaPizza",
+        date: "Oct 2023 — Mar 2024",
+        summary: "Secure REST API + scheduling optimization.",
+        bullets: [
+            "Shipped a secure Spring Boot REST API with OAuth2 / JWT authentication.",
+            "Cut shift-approval time from 5 days to 2 through schedule optimization.",
+        ],
+        tags: ["Java", "Spring Boot", "OAuth2 / JWT", "PostgreSQL", "Redis"],
+    },
+]
 
-    const toggleExperience = (id: string) => {
-        if (expandedExperience === id) {
-            setExpandedExperience(null)
-        } else {
-            setExpandedExperience(id)
-        }
-    }
+const PROJECTS = [
+    {
+        cat: ["PostgreSQL", "LLM", "CLI"],
+        title: "Seedfast",
+        href: "https://seedfa.st",
+        desc: "Schema-aware synthetic-data generator. AI-native test data for PostgreSQL — referentially-consistent in under 3 minutes for compliance-sensitive industries. 1st place at DDAccelerator.",
+    },
+    {
+        cat: ["GraalVM", "Project Loom", "Project Panama"],
+        title: "JHMS",
+        href: "#contact",
+        desc: "High-performance JVM & system-monitoring API using virtual threads and native calls to slash memory and CPU overhead.",
+    },
+    {
+        cat: ["Spring", "Tasmota Firmware", "Kotlin"],
+        title: "Endor",
+        href: "#contact",
+        desc: "IoT platform for energy efficiency: a network of IoT devices with a mobile control app for energy management.",
+    },
+    {
+        cat: ["Deeplearning4j", "Apache Flink", "Apache Cassandra"],
+        title: "Providentia",
+        href: "#contact",
+        desc: "AI-driven predictive-analytics suite delivering real-time ML predictions over streaming data.",
+    },
+    {
+        cat: ["Spring", "Apache Tomcat", "PostgreSQL"],
+        title: "Pulse",
+        href: "#contact",
+        desc: "Retail analytics & inventory management — improves demand forecasting and reduces excess inventory.",
+    },
+]
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    }
+const EDUCATION = [
+    {
+        title: "BS Computer Science",
+        org: "Technical University of Košice",
+        date: "Sep 2022 — Jun 2025",
+        note: "Backend, distributed systems and applied AI. Hackathons with the Argon team — Erste Digital, GymBeam, T-Systems.",
+    },
+    {
+        title: "Founder · HackPN",
+        org: "Student hackathon community",
+        date: "2024 — 2025",
+        note: "Founded HackPN and ran two hackathons end to end — sponsorship, logistics and judging.",
+    },
+    {
+        title: "Top-3 · UVP Startup Finals",
+        org: "with “meetera”",
+        date: "2025",
+        note: "Reached the top three at the University Science Park startup finals with meetera — an app for sparking meaningful, high-value connections at live events.",
+    },
+    {
+        title: "1st place · DDAccelerator Finals",
+        org: "with Seedfast",
+        date: "2026",
+        note: "Won the Intelligent Digital Technology category as the only Slovak startup competing across 9 countries.",
+    },
+]
 
-    const item = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 },
-    }
+const SOCIALS = [
+    { label: "Email", href: "mailto:mikhail.shytsko@gmail.com" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/mikhail-shytsko" },
+    { label: "GitHub", href: "https://github.com/xfiive" },
+    { label: "X", href: "https://x.com/mikhailshytsko" },
+    { label: "Linktree", href: "https://linktr.ee/mikhsh" },
+]
 
+/* ------------------------------- shared bits ------------------------------ */
+
+const revealTags = {
+    div: motion.div,
+    h1: motion.h1,
+    h2: motion.h2,
+    p: motion.p,
+} as const
+
+function Reveal({
+    i = 0,
+    as = "div",
+    className,
+    children,
+}: {
+    i?: number
+    as?: keyof typeof revealTags
+    className?: string
+    children: React.ReactNode
+}) {
+    const Tag = revealTags[as]
     return (
-        <div className="min-h-screen bg-[#15002e] text-white relative overflow-hidden" ref={containerRef} onClick={handleContainerClick}>
-            {/* Animated Background */}
-            <ParticlesBackground ref={particlesRef} />
+        <Tag
+            className={className}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+            transition={{ duration: 0.5, ease: EASE, delay: i * 0.08 }}
+        >
+            {children}
+        </Tag>
+    )
+}
 
-            {/* Decorative Elements */}
-            <motion.div
-                className="absolute top-[20%] right-[5%] w-64 h-64 rounded-full bg-[#ee0000]/5 blur-3xl"
-                style={{ y: y1 }}
-            />
-            <motion.div
-                className="absolute bottom-[30%] left-[10%] w-96 h-96 rounded-full bg-[#ee0000]/5 blur-3xl"
-                style={{ y: y2 }}
-            />
+function Eyebrow({ children, onRed = false }: { children: React.ReactNode; onRed?: boolean }) {
+    return (
+        <span
+            className={`inline-block font-mono text-xs font-semibold uppercase tracking-[0.15em] ${
+                onRed ? "text-white/85" : "text-crimson"
+            }`}
+        >
+            {children}
+        </span>
+    )
+}
 
-            {/* Header */}
-            <motion.header
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="fixed top-0 z-50 w-full border-b border-[#ee0000] border-b-4 bg-[#15002e]/80 backdrop-blur"
-            >
-                <div className="container flex h-16 items-center justify-between">
-                    <div className="font-bold text-xl">
-                        <span className="text-[#ee0000]">Mikhail Shytsko's</span> Portfolio
-                    </div>
-                    <nav className="hidden md:flex gap-6">
-                        <Link href="#about" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            About
-                        </Link>
-                        <Link href="#summary" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            Summary
-                        </Link>
-                        <Link href="#experience" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            Experience
-                        </Link>
-                        <Link href="#education" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            Education
-                        </Link>
-                        <Link href="#projects" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            Projects
-                        </Link>
-                        <Link href="#contact" className="text-[#a79cb6] hover:text-[#ee0000] transition-colors">
-                            Contact
-                        </Link>
-                    </nav>
-                    <Link href="/cv.pdf" target="_blank" download>
-                        <Button variant="outline"
-                            className="flex border-[#ee0000]/30 text-white hover:bg-[#ee0000]/10 gap-2">
-                            <Download className="h-4 w-4" />
-                            Resume
-                        </Button>
-                    </Link>
+/* --------------------------------- header --------------------------------- */
+
+function Header() {
+    const [solid, setSolid] = useState(false)
+    useEffect(() => {
+        const onScroll = () => setSolid(window.scrollY > 40)
+        window.addEventListener("scroll", onScroll)
+        onScroll()
+        return () => window.removeEventListener("scroll", onScroll)
+    }, [])
+    return (
+        <header
+            className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ease-premium ${
+                solid ? "bg-ink-900/95 backdrop-blur-sm" : "bg-transparent"
+            }`}
+        >
+            <div className={`${CONTAINER} flex h-[72px] items-center justify-between`}>
+                <a href="#top" className="whitespace-nowrap font-head text-[1.05rem] font-bold tracking-[-0.01em]">
+                    Mikhail Shytsko
+                </a>
+                <nav className="hidden gap-[30px] min-[840px]:flex">
+                    {NAV.map((n) => (
+                        <a
+                            key={n}
+                            href={`#${n.toLowerCase()}`}
+                            className="font-mono text-[0.72rem] uppercase tracking-[0.12em] text-white/90 transition-colors hover:text-white"
+                        >
+                            {n}
+                        </a>
+                    ))}
+                </nav>
+                <a
+                    href="/cv.pdf"
+                    download
+                    className={`${BTN} border-white/25 px-[18px] py-[11px] text-white hover:border-crimson hover:bg-crimson`}
+                >
+                    Download CV <Download className="h-[15px] w-[15px]" />
+                </a>
+            </div>
+        </header>
+    )
+}
+
+/* ---------------------------------- hero ---------------------------------- */
+
+function Hero() {
+    return (
+        <section
+            id="top"
+            className="relative overflow-hidden bg-[url(/hero-bg.jpg)] bg-cover bg-center pb-20 pt-32 sm:pb-24 sm:pt-[150px]"
+        >
+            <div className={`${CONTAINER} relative grid grid-cols-1 gap-12 min-[900px]:grid-cols-[1.35fr_0.9fr] min-[900px]:items-center min-[900px]:gap-16`}>
+                <div>
+                    <Reveal i={0}>
+                        <Eyebrow onRed>Software &amp; AI Engineer</Eyebrow>
+                    </Reveal>
+                    <Reveal
+                        i={1}
+                        as="h1"
+                        className="mt-5 max-w-[15ch] font-head text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.03] tracking-[-0.025em]"
+                    >
+                        Hi, I&apos;m
+                        <br />
+                        <span className="whitespace-nowrap [box-shadow:inset_0_-0.12em_0_rgba(255,255,255,0.45)]">
+                            Mikhail Shytsko
+                        </span>
+                    </Reveal>
+                    <Reveal i={2} as="p" className="mt-[26px] max-w-[46ch] text-lg leading-relaxed text-white/85">
+                        Founder of{" "}
+                        <a
+                            href="https://seedfa.st"
+                            target="_blank"
+                            rel="noopener"
+                            className="font-semibold text-white [box-shadow:inset_0_-0.1em_0_rgba(255,255,255,0.5)]"
+                        >
+                            Seedfast
+                        </a>
+                        . Solutions &amp; AI Engineer at Slovenská sporiteľňa, based in Bratislava, Slovakia. BS in
+                        Computer Science, Technical University of Košice (2025).
+                    </Reveal>
+                    <Reveal i={3} className="mt-[34px] flex flex-wrap gap-3.5">
+                        <a href="#contact" className={`${BTN} bg-white text-ink hover:bg-crimson hover:text-white`}>
+                            Let&apos;s talk <ArrowUpRight className="h-[18px] w-[18px]" />
+                        </a>
+                        <a href="#projects" className={`${BTN} border-white/30 text-white hover:bg-white/10`}>
+                            View work
+                        </a>
+                    </Reveal>
                 </div>
-            </motion.header>
-
-            <main className="container pt-24 pb-8 md:pb-12 relative z-10">
-                {/* Hero Section */}
-                <section id="about" className="py-12 md:py-24" ref={heroRef}>
-                    <motion.div style={{ scale: heroScale, y: heroY }} className="grid gap-8 md:grid-cols-2 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="space-y-6"
-                        >
-                            <Badge
-                                className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                Software Engineer
-                            </Badge>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                                Hi, I'm <span className="text-[#ee0000]">Mikhail Shytsko</span>
-                            </h1>
-                            <p className="text-lg text-[#a79cb6] max-w-md">
-                                Software engineer building{" "}
-                                <Link
-                                    href="https://seedfa.st"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[#ee0000] hover:text-[#ff3333] underline underline-offset-4"
-                                >
-                                    Seedfast
-                                </Link>
-                                . Also Solutions & AI Engineer at Slovenská sporiteľňa. BS in Computer Science from Technical University of Košice (2025).
-                            </p>
-                            <div className="flex gap-4">
-                                <Link href="https://www.linkedin.com/in/mikhail-shytsko/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="rounded-full border-[#ee0000]/30 text-white hover:bg-[#ee0000]/10"
-                                    >
-                                        <Linkedin className="h-5 w-5" />
-                                        <span className="sr-only">LinkedIn</span>
-                                    </Button>
-                                </Link>
-                                <Link href="https://x.com/mikhailshytsko" target="_blank" rel="noopener noreferrer">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="rounded-full border-[#ee0000]/30 text-white hover:bg-[#ee0000]/10"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="lucide lucide-twitter"
-                                        >
-                                            <path
-                                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                                        </svg>
-                                        <span className="sr-only">X (Twitter)</span>
-                                    </Button>
-                                </Link>
-                                <Link href="https://github.com/xfiive" target="_blank" rel="noopener noreferrer">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="rounded-full border-[#ee0000]/30 text-white hover:bg-[#ee0000]/10"
-                                    >
-                                        <Github className="h-5 w-5" />
-                                        <span className="sr-only">GitHub</span>
-                                    </Button>
-                                </Link>
-                                <Link href="https://linktr.ee/mikhsh" target="_blank" rel="noopener noreferrer">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="rounded-full border-[#ee0000]/30 text-white hover:bg-[#ee0000]/10"
-                                    >
-                                        <ExternalLink className="h-5 w-5" />
-                                        <span className="sr-only">Linktr.ee</span>
-                                    </Button>
-                                </Link>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-4 border-[#ee0000] bg-[#15002e]"
-                        >
-                            <div className="absolute inset-0 flex items-center justify-center text-[#8e839d]"></div>
-
+                <div className="w-full max-w-[380px] max-[600px]:max-w-none min-[900px]:ml-auto">
+                    <Reveal i={2}>
+                        <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/30 bg-[#2a0010] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]">
                             <Image
                                 src="/avatar.jpg"
-                                alt="Mikhail Shytsko"
-                                width={400}
-                                height={400}
+                                alt="Portrait of Mikhail Shytsko"
+                                fill
                                 priority
-                                fetchPriority="high"
-                                className="object-cover object-bottom w-full h-full"
+                                sizes="(min-width: 900px) 380px, 100vw"
+                                className="object-cover object-[center_20%]"
                             />
-                        </motion.div>
-
-                    </motion.div>
-                </section>
-
-                {/* Summary Section */}
-                <section id="summary" className="py-12 md:py-24 border-t border-[#ee0000] border-t-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="space-y-8"
-                    >
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                                <User className="h-5 w-5 text-[#ee0000]" />
-                                <Badge
-                                    className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                    Professional Summary
-                                </Badge>
-                            </div>
-                            <h2 className="text-3xl font-bold tracking-tight">About Me</h2>
                         </div>
-
-                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                <CardContent className="pt-6">
-                                    <p className="text-lg leading-relaxed">
-                                        Working on AI-native systems and scalable backend architecture. Spring and Python background.
-                                        <span className="block mt-4 text-[#ee0000] font-medium">
-                                            Focused on creating value, not just writing code.
-                                        </span>
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-
-                        {/* Seedfast Founder Section */}
-                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}
-                            className="mt-12">
-                            <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                <CardHeader>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 relative">
-                                            <Image
-                                                src="/logo-symbol-white.png"
-                                                alt="Seedfast"
-                                                width={48}
-                                                height={48}
-                                                className="object-contain"
-                                            />
-                                        </div>
-                                        <div className="break-words whitespace-normal max-w-full">
-                                            <CardTitle
-                                                className="text-xl break-words max-w-full"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                Founder at Seedfast
-                                            </CardTitle>
-                                            <Link
-                                                href="https://seedfa.st"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-[#ee0000] hover:text-[#ff3333] transition-colors flex items-center gap-1 mt-1 break-words max-w-full"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                <ExternalLink className="h-4 w-4" />
-                                                seedfa.st
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-[#a79cb6]">
-                                        Founded Seedfast — an AI-native platform powered by LLM APIs that generates
-                                        large-scale synthetic datasets for compliance-sensitive industries (finance,
-                                        pharma, medtech) where production data cannot be used due to regulatory
-                                        restrictions, does not yet exist, or is insufficient for testing, analytics,
-                                        or AI training. Reads database schemas and produces realistic,
-                                        relationship-aware data in under 3 minutes with zero configuration. Won 1st
-                                        place at DDAccelerator Finals as the only Slovak startup competing across
-                                        9 countries.
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    </motion.div>
-                </section>
-
-                {/* Experience Section */}
-                <section id="experience" className="py-12 md:py-24 border-t border-[#ee0000] border-t-4"
-                    ref={experienceRef}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="space-y-8"
-                    >
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                                <Briefcase className="h-5 w-5 text-[#ee0000]" />
-                                <Badge
-                                    className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                    Experience
-                                </Badge>
-                            </div>
-                            <h2 className="text-3xl font-bold tracking-tight">Work Experience</h2>
-                            <p className="text-[#a79cb6] max-w-3xl">My professional journey as a software engineer</p>
-                        </div>
-
-                        <div className="space-y-6">
-                            {/* Experience 1 */}
-                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                    <CardHeader className="pb-2">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                            <CardTitle className="text-xl">Solutions & AI Engineer, Slovenska Sporitelna, a.s.</CardTitle>
-                                            <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
-                                                July 2025 - Today
-                                            </Badge>
-                                        </div>
-                                        <CardDescription className="text-[#a79cb6] text-lg">Project: Internal banking projects</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-4">
-                                            <p className="text-[#a79cb6]">
-                                                Saved the bank 300K+ EUR by replacing an outsourced workflow with an
-                                                in-house Kafka pipeline. Cut response times by 85% for services serving
-                                                2M+ customers. Built AI-driven data pipelines for credit data validation
-                                                and piloted AI-based KYC liveness detection. Grew a team from zero to
-                                                three engineers that doubled delivery throughput.
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Spring Ecosystem
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Apache Kafka
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Python
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    LLMs
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Hiring & Mentoring
-                                                </Badge>
-                                            </div>
-
-                                            <div>
-                                                <Button
-                                                    variant="ghost"
-                                                    className="p-0 h-auto text-[#ee0000] hover:text-[#ff3333] flex items-center gap-1"
-                                                    onClick={() => toggleExperience("exp4")}
-                                                >
-                                                    {expandedExperience === "exp4" ? "Show less" : "Show more"}
-                                                    <ChevronDown
-                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp4" ? "rotate-180" : ""}`}
-                                                    />
-                                                </Button>
-
-                                                <AnimatePresence>
-                                                    {expandedExperience === "exp4" && (
-                                                        <motion.div
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.3 }}
-                                                            className="overflow-hidden"
-                                                        >
-                                                            <div className="pt-4 space-y-2">
-                                                                <h4 className="font-medium">Key Responsibilities:</h4>
-                                                                <ul className="list-disc pl-5 space-y-2 text-[#a79cb6]">
-                                                                    <li>
-                                                                        Saved the bank 300K+ EUR by replacing an outsourced
-                                                                        workflow with an in-house Kafka pipeline processing
-                                                                        50K+ daily events — took a one-page business spec,
-                                                                        independently identified gaps, challenged requirements
-                                                                        with stakeholders, and delivered a production-ready
-                                                                        service end-to-end
-                                                                    </li>
-                                                                    <li>
-                                                                        Cut response times by 85% and reduced infrastructure
-                                                                        costs for two high-load applications serving 2M+
-                                                                        customers by taking sole ownership of vendor-inherited
-                                                                        services and driving targeted performance optimizations
-                                                                        that improved SLA compliance bank-wide
-                                                                    </li>
-                                                                    <li>
-                                                                        Accelerated lending decisions by building AI-driven
-                                                                        data pipelines for automated credit data validation
-                                                                        and risk scoring, replacing manual review of
-                                                                        large-volume credit datasets with LLM-based processing
-                                                                    </li>
-                                                                    <li>
-                                                                        Piloted AI-based liveness detection and face matching
-                                                                        for KYC, validating a new fraud prevention approach
-                                                                        at the onboarding stage
-                                                                    </li>
-                                                                    <li>
-                                                                        Doubled feature delivery throughput by building a
-                                                                        3-person engineering team from scratch — from role
-                                                                        definitions to final offers — and introducing
-                                                                        structured code reviews and sprint retrospectives
-                                                                    </li>
-                                                                    <li>
-                                                                        Built data-driven analytical interfaces for internal
-                                                                        banking tools using React, TypeScript, and REST APIs
-                                                                    </li>
-                                                                </ul>
-
-                                                                <h4 className="font-medium pt-2">Technologies Used:</h4>
-                                                                <p className="text-[#a79cb6]">
-                                                                    Spring Ecosystem, Apache Kafka, Podman, GitLab, Python, Kotlin, Java, React, LLMs
-                                                                </p>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Experience 2 */}
-                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                    <CardHeader className="pb-2">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                            <CardTitle className="text-xl">Software Engineer, The Designery
-                                                s.r.o.</CardTitle>
-                                            <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
-                                                Apr 2025 - July 2025
-                                            </Badge>
-                                        </div>
-                                        <CardDescription className="text-[#a79cb6] text-lg">Project: Mental Health
-                                            Startup</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-4">
-                                            <p className="text-[#a79cb6]">
-                                                Architected and shipped the entire backend for a mental health startup
-                                                from zero, designing for GDPR compliance from day one. Built real-time
-                                                encrypted data streams on GCP, led a team of three developers, and
-                                                automated CI/CD that cut deployment time by 3x.
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Spring WebFlux
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Google Cloud Platform
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    GDPR Compliance
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Team Lead
-                                                </Badge>
-                                            </div>
-
-                                            <div>
-                                                <Button
-                                                    variant="ghost"
-                                                    className="p-0 h-auto text-[#ee0000] hover:text-[#ff3333] flex items-center gap-1"
-                                                    onClick={() => toggleExperience("exp1")}
-                                                >
-                                                    {expandedExperience === "exp1" ? "Show less" : "Show more"}
-                                                    <ChevronDown
-                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp1" ? "rotate-180" : ""}`}
-                                                    />
-                                                </Button>
-
-                                                <AnimatePresence>
-                                                    {expandedExperience === "exp1" && (
-                                                        <motion.div
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.3 }}
-                                                            className="overflow-hidden"
-                                                        >
-                                                            <div className="pt-4 space-y-2">
-                                                                <h4 className="font-medium">Key Responsibilities:</h4>
-                                                                <ul className="list-disc pl-5 space-y-2 text-[#a79cb6]">
-                                                                    <li>
-                                                                        Designed and launched the backend architecture
-                                                                        on Spring WebFlux and Google Cloud Platform
-                                                                        from scratch, optimizing for minimal
-                                                                        infrastructure costs from day one so the startup
-                                                                        could scale without burning through runway
-                                                                    </li>
-                                                                    <li>
-                                                                        Implemented real-time streaming data encryption
-                                                                        that ensured zero unauthorized reads and full EU
-                                                                        GDPR compliance, a critical requirement for
-                                                                        handling sensitive mental health patient data
-                                                                    </li>
-                                                                    <li>
-                                                                        Led a team of three developers, established task
-                                                                        prioritization and delivery workflows, and
-                                                                        automated CI/CD pipelines in GitLab that reduced
-                                                                        deployment time from 12 minutes to 4 minutes
-                                                                        with zero-downtime releases
-                                                                    </li>
-                                                                    <li>
-                                                                        Made key technology decisions (Firestore over
-                                                                        SQL, Firebase Auth over custom auth, Cloud
-                                                                        Functions for event-driven processing) that
-                                                                        allowed the startup to ship faster with a lean
-                                                                        team
-                                                                    </li>
-                                                                </ul>
-
-                                                                <h4 className="font-medium pt-2">Technologies Used:</h4>
-                                                                <p className="text-[#a79cb6]">
-                                                                    Spring WebFlux, GCP, Firestore, Firebase Auth, Cloud Functions, Docker, GitLab CI/CD
-                                                                </p>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Experience 3 */}
-                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                    <CardHeader className="pb-2">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                            <CardTitle className="text-xl">Software Engineer, VitSBS</CardTitle>
-                                            <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
-                                                May 2024 - Oct 2024
-                                            </Badge>
-                                        </div>
-                                        <CardDescription className="text-[#a79cb6] text-lg">
-                                            Project: Automated Certification System & Experimental IoT for Air Quality
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-4">
-                                            <p className="text-[#a79cb6]">
-                                                Built a certification automation platform that cut document processing
-                                                time by 50%, eliminating a manual bottleneck that was slowing down the
-                                                company's core revenue stream. Developed a prototype IoT air quality
-                                                monitoring system and created reusable internal tooling adopted across
-                                                multiple projects.
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Spring
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Process Automation
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    IoT
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Data Analytics
-                                                </Badge>
-                                            </div>
-
-                                            <div>
-                                                <Button
-                                                    variant="ghost"
-                                                    className="p-0 h-auto text-[#ee0000] hover:text-[#ff3333] flex items-center gap-1"
-                                                    onClick={() => toggleExperience("exp2")}
-                                                >
-                                                    {expandedExperience === "exp2" ? "Show less" : "Show more"}
-                                                    <ChevronDown
-                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp2" ? "rotate-180" : ""}`}
-                                                    />
-                                                </Button>
-
-                                                <AnimatePresence>
-                                                    {expandedExperience === "exp2" && (
-                                                        <motion.div
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.3 }}
-                                                            className="overflow-hidden"
-                                                        >
-                                                            <div className="pt-4 space-y-2">
-                                                                <h4 className="font-medium">Key Responsibilities:</h4>
-                                                                <ul className="list-disc pl-5 space-y-2 text-[#a79cb6]">
-                                                                    <li>
-                                                                        Automated the equipment certification workflow
-                                                                        end-to-end, reducing document processing time by
-                                                                        nearly 50% and removing a manual bottleneck that
-                                                                        was delaying the company's ability to certify
-                                                                        and sell equipment
-                                                                    </li>
-                                                                    <li>
-                                                                        Built a trend analytics module using GraalPy that
-                                                                        gave the business team real-time visibility into
-                                                                        certification patterns and equipment demand,
-                                                                        accelerating product decision-making by 25%
-                                                                    </li>
-                                                                    <li>
-                                                                        Created a reusable Spring AOP audit library that
-                                                                        standardized transaction logging across projects,
-                                                                        cutting the time engineers spent searching for
-                                                                        internal transaction data and ensuring reliable
-                                                                        collection of critical audit trails
-                                                                    </li>
-                                                                    <li>
-                                                                        Developed a prototype IoT system for air quality
-                                                                        monitoring using time-series databases, validating
-                                                                        a potential new product line for the company
-                                                                    </li>
-                                                                </ul>
-
-                                                                <h4 className="font-medium pt-2">Technologies Used:</h4>
-                                                                <p className="text-[#a79cb6]">
-                                                                    Spring Framework, PostgreSQL, MongoDB, Vaadin, Spring AOP, GraalVM, Docker, GitHub Actions
-                                                                </p>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Experience 4 */}
-                            <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                    <CardHeader className="pb-2">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                            <CardTitle className="text-xl">Backend Developer, ArenaPizza</CardTitle>
-                                            <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
-                                                Oct 2023 - Mar 2024
-                                            </Badge>
-                                        </div>
-                                        <CardDescription className="text-[#a79cb6] text-lg">
-                                            Project: Order Management & Logistics Optimization
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="space-y-4">
-                                            <p className="text-[#a79cb6]">
-                                                Designed and shipped a schedule management system that cut shift
-                                                approval time from 5 days to 2, and built a QR coupon mailing system
-                                                that became a key driver of repeat customer visits. Secured all
-                                                customer-facing APIs with OAuth2 and JWT from the ground up.
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Spring Boot
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    OAuth2 & Security
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Redis
-                                                </Badge>
-                                                <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                    Marketing Automation
-                                                </Badge>
-                                            </div>
-
-                                            <div>
-                                                <Button
-                                                    variant="ghost"
-                                                    className="p-0 h-auto text-[#ee0000] hover:text-[#ff3333] flex items-center gap-1"
-                                                    onClick={() => toggleExperience("exp3")}
-                                                >
-                                                    {expandedExperience === "exp3" ? "Show less" : "Show more"}
-                                                    <ChevronDown
-                                                        className={`h-4 w-4 transition-transform ${expandedExperience === "exp3" ? "rotate-180" : ""}`}
-                                                    />
-                                                </Button>
-
-                                                <AnimatePresence>
-                                                    {expandedExperience === "exp3" && (
-                                                        <motion.div
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.3 }}
-                                                            className="overflow-hidden"
-                                                        >
-                                                            <div className="pt-4 space-y-2">
-                                                                <h4 className="font-medium">Key Responsibilities:</h4>
-                                                                <ul className="list-disc pl-5 space-y-2 text-[#a79cb6]">
-                                                                    <li>
-                                                                        Built a secure REST API on Spring Boot with
-                                                                        OAuth2 and JWT authentication, establishing the
-                                                                        security foundation for all customer-facing
-                                                                        services and ensuring compliance with data
-                                                                        protection requirements
-                                                                    </li>
-                                                                    <li>
-                                                                        Redesigned the shift scheduling system with
-                                                                        feature toggles, reducing shift approval cycles
-                                                                        from 5 days to 2 and giving managers real-time
-                                                                        control over staffing, which improved operational
-                                                                        efficiency during peak hours
-                                                                    </li>
-                                                                    <li>
-                                                                        Developed a QR coupon mailing system with A/B
-                                                                        testing capabilities that became a core marketing
-                                                                        channel, driving measurable increases in repeat
-                                                                        customer visits and promotional campaign ROI
-                                                                    </li>
-                                                                    <li>
-                                                                        Implemented Redis-based caching for high-traffic
-                                                                        endpoints, reducing database load during order
-                                                                        rushes and keeping response times consistent even
-                                                                        at peak demand
-                                                                    </li>
-                                                                </ul>
-
-                                                                <h4 className="font-medium pt-2">Technologies Used:</h4>
-                                                                <p className="text-[#a79cb6]">
-                                                                    Spring Boot, OAuth2, JWT, PostgreSQL, Redis, GitHub Actions
-                                                                </p>
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* Education Section */}
-                <section id="education" className="py-12 md:py-24 border-t border-[#ee0000] border-t-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="space-y-8"
-                    >
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                                <GraduationCap className="h-5 w-5 text-[#ee0000]" />
-                                <Badge
-                                    className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                    Education
-                                </Badge>
-                            </div>
-                            <h2 className="text-3xl font-bold tracking-tight">Education & Additional Information</h2>
-                        </div>
-
-                        <motion.div whileHover={{ scale: 1.01 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <Card className="bg-[#15002e]/50 border-[#ee0000] border-2">
-                                <CardHeader className="pb-2">
-                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                        <CardTitle className="text-xl">Bachelor of Computer Science - Technical University of Kosice</CardTitle>
-                                        <Badge variant="outline" className="mt-2 md:mt-0 border-[#ee0000]/30 w-fit">
-                                            September 2022 - June 2025
-                                        </Badge>
-                                    </div>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-6 break-words whitespace-normal">
-                                        <div>
-                                            <h4 className="font-medium text-lg mb-2">Personal achievements:</h4>
-                                            <ul className="list-disc pl-5 space-y-2 text-[#a79cb6] break-words">
-                                                <li>
-                                                    Successfully participated in multiple hackathons with&nbsp;
-                                                    <a
-                                                        href="https://linktr.ee/argonteam"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        Argon&nbsp;team
-                                                    </a>
-                                                    , including&nbsp;
-                                                    <a
-                                                        href="https://www.erstedigital.com/sk/hackathon"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        Erste&nbsp;Digital
-                                                    </a>
-                                                    ,&nbsp;
-                                                    <a
-                                                        href="https://datahackathon.sk/"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        GymBeam
-                                                    </a>
-                                                    &nbsp;and&nbsp;
-                                                    <a
-                                                        href="https://hackathon.deutschetelekomitsolutions.sk/"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        T-Systems&nbsp;Hackathon
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    Founded project <strong>HackPN</strong> and successfully organised 2
-                                                    hackathons with it — offline one in the city of Piešťany and an
-                                                    online one with&nbsp;
-                                                    <a
-                                                        href="https://upliftmedia.us/"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        UpliftMedia
-                                                    </a>
-                                                    &nbsp;for Slovak and American students
-                                                </li>
-
-                                                <li>
-                                                    Was qualified for participation in&nbsp;
-                                                    <a
-                                                        href="https://startupcentrum.sk/project/meetera-2/"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        UVP Startup Accelerator
-                                                    </a>
-                                                    &nbsp;with project&nbsp;
-                                                    <a
-                                                        href="https://linktr.ee/meetera"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        meetera
-                                                    </a>
-                                                    &nbsp;and got into top 3 startups at UVP Startup Finals
-                                                </li>
-
-                                                <li>
-                                                    Won 1st place at&nbsp;
-                                                    <a
-                                                        href="https://technologytransferdays.fit.cvut.cz/leaderboard"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        DDAccelerator&nbsp;Finals
-                                                    </a>
-                                                    &nbsp;with&nbsp;
-                                                    <a
-                                                        href="https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        Seedfast
-                                                    </a>
-                                                    &nbsp;(
-                                                    <a
-                                                        href="https://seedfa.st"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-white underline underline-offset-4 hover:text-[#e2dce9] break-words"
-                                                    >
-                                                        seedfa.st
-                                                    </a>
-                                                    ) — representing Slovakia as the only startup from the
-                                                    country and winning 1st place among teams from 9 countries
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div>
-                                            <h4 className="font-medium text-lg mb-2">Languages:</h4>
-                                            <ul className="list-disc pl-5 space-y-2 text-[#a79cb6] break-words">
-                                                <li>
-                                                    <span className="text-white">English</span>
-                                                </li>
-                                                <li>
-                                                    <span className="text-white">Slovak</span>
-                                                </li>
-                                                <li>
-                                                    <span className="text-white">Russian</span>
-                                                </li>
-                                                <li>
-                                                    <span className="text-white">Belarussian</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    </motion.div>
-                </section>
-
-                {/* Projects Section */}
-                <section id="projects" className="py-12 md:py-24 border-t border-[#ee0000] border-t-4"
-                    ref={projectsRef}>
-                    <motion.div
-                        variants={container}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="space-y-8"
-                    >
-                        <div className="space-y-2">
-                            <Badge
-                                className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                Projects
-                            </Badge>
-                            <h2 className="text-3xl font-bold tracking-tight">Personal Projects</h2>
-                            <p className="text-[#a79cb6] max-w-3xl">
-                                Showcasing my passion for software development through personal projects
-                            </p>
-                        </div>
-
-                        <div className="grid gap-4 md:grid-cols-2">
-                            {/* Project — Seedfast (founder) */}
-                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
-                                    <CardHeader>
-                                        <CardTitle>
-                                            <Link
-                                                href="https://seedfa.st"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="hover:text-[#ee0000] transition-colors inline-flex items-center gap-1"
-                                            >
-                                                Seedfast | Schema-Aware Data Generator
-                                                <ExternalLink className="h-4 w-4" />
-                                            </Link>
-                                        </CardTitle>
-                                        <CardDescription className="text-[#a79cb6]">
-                                            AI-native synthetic data generator for PostgreSQL. Reads database
-                                            schemas and produces referentially-consistent test data in under 3
-                                            minutes — built for compliance-sensitive industries where production
-                                            data cannot leave secure environments. 1st place at DDAccelerator
-                                            Finals (9 countries).
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="flex flex-wrap gap-2 mb-2">
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                PostgreSQL
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                LLM
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                CLI
-                                            </Badge>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Project 1 */}
-                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
-                                    <CardHeader>
-                                        <CardTitle>JHMS | High-Performance JVM & System Monitoring API</CardTitle>
-                                        <CardDescription className="text-[#a79cb6]">
-                                            Java API for monitoring JVM and system metrics using GraalVM with virtual
-                                            threads and native calls, reducing memory and
-                                            CPU consumption
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="flex flex-wrap gap-2 mb-2">
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                GraalVM
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Project Loom
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Project Panama
-                                            </Badge>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Project 2 */}
-                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
-                                    <CardHeader>
-                                        <CardTitle>Endor | IoT Platform for Energy Efficiency</CardTitle>
-                                        <CardDescription className="text-[#a79cb6]">
-                                            Scalable network of IoT devices and with mobile control application for
-                                            energy
-                                            management and energy usage reduction
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="flex flex-wrap gap-2 mb-2">
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Spring
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Tasmota Firmware
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Kotlin
-                                            </Badge>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Project 3 */}
-                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
-                                    <CardHeader>
-                                        <CardTitle>Providentia | AI-Driven Predictive Analytics Suite</CardTitle>
-                                        <CardDescription className="text-[#a79cb6]">
-                                            A Java-based real-time predictive analytics platform that uses machine
-                                            learning algorithms and optimised computation to improve prediction accuracy
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="flex flex-wrap gap-2 mb-2">
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Deeplearning4j
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Apache Flink
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Apache Cassandra
-                                            </Badge>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-
-                            {/* Project 4 */}
-                            <motion.div variants={item} whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}>
-                                <Card className="bg-[#15002e]/50 border-[#ee0000] border-2 h-full">
-                                    <CardHeader>
-                                        <CardTitle>Pulse | Retail Analytics & Inventory Management</CardTitle>
-                                        <CardDescription className="text-[#a79cb6]">
-                                            A sales analytics and inventory management platform for retailers that
-                                            improves demand forecasting accuracy and reduces excess inventory
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="flex flex-wrap gap-2 mb-2">
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Spring
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                Apache Tomcat
-                                            </Badge>
-                                            <Badge variant="secondary" className="bg-[#15002e] hover:bg-[#ee0000]/15">
-                                                PostgreSQL
-                                            </Badge>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* Contact Section */}
-                <section
-                    id="contact"
-                    className="py-12 md:py-24 border-t-4 border-[#ee0000] max-w-full break-words whitespace-normal"
-                    ref={contactRef}
-                >
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="space-y-8 max-w-full break-words whitespace-normal"
-                    >
-                        <div className="space-y-2 max-w-full break-words whitespace-normal">
-                            <Badge
-                                className="px-3 py-1 text-sm bg-[#ee0000]/10 text-[#ee0000] border-[#ee0000]/20 hover:bg-[#ee0000]/20 hover:text-[#ee0000]">
-                                Contact
-                            </Badge>
-                            <h2 className="text-3xl font-bold tracking-tight">Get In Touch</h2>
-                            <p className="text-[#a79cb6] max-w-3xl break-words whitespace-normal">
-                                Feel free to reach out for collaborations or just a friendly chat!
-                            </p>
-                        </div>
-
-                        <div className="max-w-3xl mx-auto max-w-full break-words whitespace-normal">
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 300 }}
-                            >
-                                <Card
-                                    className="bg-[#15002e]/50 border-2 border-[#ee0000] max-w-full break-words whitespace-normal"
-                                    style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                >
-                                    <CardHeader>
-                                        <CardTitle
-                                            className="break-words whitespace-normal"
-                                            style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                        >
-                                            Contact Information
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="space-y-6 max-w-full break-words whitespace-normal">
-                                        {/** Email **/}
-                                        <div
-                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Mail className="h-5 w-5 text-[#ee0000]" />
-                                            <a
-                                                href="mailto:mikhail.shytsko@gmail.com"
-                                                className="text-white hover:text-[#ee0000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                mikhail.shytsko@gmail.com
-                                            </a>
-                                        </div>
-
-                                        {/** LinkedIn **/}
-                                        <div
-                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Linkedin className="h-5 w-5 text-[#ee0000]" />
-                                            <Link
-                                                href="https://www.linkedin.com/in/mikhail-shytsko/"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-white hover:text-[#ee0000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                linkedin.com/in/mikhail-shytsko
-                                            </Link>
-                                        </div>
-
-                                        {/** GitHub **/}
-                                        <div
-                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <Github className="h-5 w-5 text-[#ee0000]" />
-                                            <Link
-                                                href="https://github.com/xfiive"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-white hover:text-[#ee0000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                github.com/xfiive
-                                            </Link>
-                                        </div>
-
-                                        {/** X (Twitter) **/}
-                                        <div
-                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="text-[#ee0000]"
-                                            >
-                                                <path
-                                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                                            </svg>
-                                            <Link
-                                                href="https://x.com/mikhailshytsko"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-white hover:text-[#ee0000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                x.com/mikhailshytsko
-                                            </Link>
-                                        </div>
-
-                                        {/** Linktree **/}
-                                        <div
-                                            className="flex items-center gap-3 max-w-full break-words whitespace-normal">
-                                            <ExternalLink className="h-5 w-5 text-[#ee0000]" />
-                                            <Link
-                                                href="https://linktr.ee/mikhsh"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-white hover:text-[#ee0000] transition-colors break-words whitespace-normal"
-                                                style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
-                                            >
-                                                linktr.ee/mikhsh
-                                            </Link>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </section>
-            </main>
-
-            {/* Footer */}
-            <footer className="border-t-4 border-[#ee0000] bg-[#15002e] relative z-10">
-                <div className="container mx-auto py-6 flex flex-col items-center gap-2">
-                    <p className="text-center text-sm text-[#a79cb6]">
-                        © {new Date().getFullYear()} Mikhail Shytsko. All rights reserved.
-                    </p>
-                    <p className="text-center text-sm text-[#8e839d]">
-                        Last updated: {new Date(process.env.NEXT_PUBLIC_LAST_UPDATED!).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
-                    </p>
-                    <p className="text-center text-xs text-[#756984] max-w-lg mt-2">
-                        This is a personal non-commercial portfolio. The color palette is inspired by{" "}
-                        <a href="https://sudolabs.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[#a79cb6] transition-colors">
-                            sudolabs.com
-                        </a>
-                        . No affiliation, endorsement, or commercial use implied. If you represent Sudo Labs and have any concerns, please{" "}
-                        <a href="mailto:mikhail.shytsko@gmail.com" className="underline underline-offset-2 hover:text-[#a79cb6] transition-colors">
-                            mail me
-                        </a>.
-                    </p>
+                    </Reveal>
                 </div>
-            </footer>
+            </div>
+        </section>
+    )
+}
 
+/* ------------------------------ currently at ------------------------------ */
+
+function Worked() {
+    return (
+        <section className="bg-paper py-16 text-ink md:py-20">
+            <div className={`${CONTAINER} text-center`}>
+                <Reveal i={0}>
+                    <Eyebrow>Currently building at</Eyebrow>
+                </Reveal>
+                <Reveal
+                    i={1}
+                    className="mt-5 grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-2 font-head text-[clamp(1.75rem,4vw,3rem)] font-semibold tracking-[-0.02em] sm:grid-cols-[1fr_auto_1fr]"
+                >
+                    <a
+                        href="https://www.slsp.sk/"
+                        target="_blank"
+                        rel="noopener"
+                        className="inline-flex items-center gap-2 leading-[1.08] transition-colors duration-300 ease-premium hover:text-crimson sm:justify-self-end"
+                    >
+                        <span className="sm:text-right">
+                            Slovenská{" "}
+                            <br className="hidden sm:inline" />
+                            sporiteľňa
+                        </span>
+                        <ArrowUpRight className="h-[0.7em] w-[0.7em] opacity-70" />
+                    </a>
+                    <span className="text-crimson" aria-hidden="true">
+                        ·
+                    </span>
+                    <a
+                        href="https://seedfa.st"
+                        target="_blank"
+                        rel="noopener"
+                        className="inline-flex items-center gap-2 transition-colors duration-300 ease-premium hover:text-crimson sm:justify-self-start"
+                    >
+                        Seedfast <ArrowUpRight className="h-[0.7em] w-[0.7em] opacity-70" />
+                    </a>
+                </Reveal>
+            </div>
+        </section>
+    )
+}
+
+/* --------------------------------- summary --------------------------------- */
+
+function Summary() {
+    return (
+        <section id="about" className="bg-ink-900 py-24 md:py-32">
+            <div className={`${CONTAINER} grid grid-cols-1 gap-8 min-[900px]:grid-cols-[1fr_1.1fr] min-[900px]:gap-[72px]`}>
+                <div>
+                    <Reveal i={0}>
+                        <Eyebrow>About</Eyebrow>
+                    </Reveal>
+                    <Reveal
+                        i={1}
+                        as="h2"
+                        className="mt-3.5 max-w-[18ch] font-head text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.02em]"
+                    >
+                        Focused on creating value, not just writing code.
+                    </Reveal>
+                </div>
+                <div>
+                    <Reveal i={2} as="p" className="text-lg leading-[1.7] text-muted-dark">
+                        Building AI-native systems and the backends behind them — MCP-based agents, LLM pipelines and
+                        high-load services — with a strong Spring/JVM background now applied in Kotlin and Python. At
+                        Slovenská sporiteľňa — Slovakia&apos;s largest retail bank — I build the pipelines and AI
+                        tooling behind services serving millions of customers.
+                    </Reveal>
+                    <Reveal i={3} className="mt-8 rounded-xl border border-ink-700 bg-ink-800 px-[26px] py-6">
+                        <div className="flex flex-wrap items-center gap-3">
+                            <span className="rounded-full border border-ink-700 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-crimson">
+                                Founder
+                            </span>
+                            <a
+                                href="https://seedfa.st"
+                                target="_blank"
+                                rel="noopener"
+                                className="inline-flex items-center gap-[7px] font-head text-2xl font-semibold tracking-[-0.01em] text-white transition-colors hover:text-crimson"
+                            >
+                                Seedfast <ArrowUpRight className="h-4 w-4" />
+                            </a>
+                            <span className="ml-auto font-mono text-[0.74rem] tracking-[0.06em] text-muted-dark max-[600px]:ml-0 max-[600px]:w-full">
+                                seedfa.st
+                            </span>
+                        </div>
+                        <p className="mt-4 leading-[1.65] text-muted-dark">
+                            An AI-native platform generating large-scale synthetic datasets for compliance-sensitive
+                            industries — finance, pharma, medtech. It reads database schemas and produces realistic,
+                            relationship-aware data in under 3 minutes. Won 1st place at DDAccelerator Finals as the
+                            only Slovak startup competing across 9 countries.
+                        </p>
+                    </Reveal>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+/* ------------------------------- experience -------------------------------- */
+
+function ExperienceItem({
+    x,
+    n,
+    open,
+    onToggle,
+}: {
+    x: (typeof EXPERIENCE)[number]
+    n: number
+    open: boolean
+    onToggle: () => void
+}) {
+    return (
+        <div className="border-b border-ink/15">
+            <button
+                type="button"
+                onClick={onToggle}
+                aria-expanded={open}
+                className="grid w-full grid-cols-[auto_1fr] items-center gap-x-4 gap-y-1.5 px-1 py-[22px] text-left sm:grid-cols-[auto_1fr_auto_auto] sm:gap-5 sm:py-[26px]"
+            >
+                <span className="font-mono text-[0.85rem] font-semibold text-crimson">
+                    {String(n).padStart(2, "0")}
+                </span>
+                <span className="min-w-0">
+                    <span
+                        className={`block font-head text-[1.15rem] font-semibold tracking-[-0.01em] transition-colors sm:text-[1.4rem] ${
+                            open ? "text-crimson" : "text-ink"
+                        }`}
+                    >
+                        {x.role}{" "}
+                        <span className="mt-[3px] block text-[0.95rem] font-medium text-muted-light sm:mt-0 sm:inline sm:text-[1.05rem]">
+                            · {x.org}
+                        </span>
+                    </span>
+                    <span className="mt-[5px] block text-[0.95rem] text-muted-light">{x.summary}</span>
+                </span>
+                <span className="col-start-2 font-mono text-[0.78rem] tracking-[0.08em] text-muted-light sm:col-auto sm:whitespace-nowrap">
+                    {x.date}
+                </span>
+                <ChevronDown
+                    className={`hidden h-[22px] w-[22px] flex-none text-ink transition-transform duration-300 ease-premium sm:block ${
+                        open ? "rotate-180" : ""
+                    }`}
+                />
+            </button>
+            <div
+                className="grid transition-[grid-template-rows] [transition-duration:400ms] ease-premium"
+                style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+            >
+                <div className="overflow-hidden">
+                    <ul className="flex max-w-[70ch] flex-col gap-3 pb-[18px] pt-1">
+                        {x.bullets.map((b) => (
+                            <li
+                                key={b}
+                                className="relative pl-[26px] leading-[1.6] text-ink before:absolute before:left-1 before:top-[0.6em] before:h-0.5 before:w-2 before:bg-crimson before:content-['']"
+                            >
+                                {b}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2 pb-[26px]">
+                        {x.tags.map((t) => (
+                            <span
+                                key={t}
+                                className="rounded-full border border-ink/20 px-[11px] py-[5px] font-mono text-[0.68rem] uppercase tracking-[0.08em] text-muted-light"
+                            >
+                                {t}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
+    )
+}
+
+function Experience() {
+    const [open, setOpen] = useState(0)
+    return (
+        <section id="experience" className="bg-paper py-24 text-ink md:py-32">
+            <div className={CONTAINER}>
+                <div className="mb-14">
+                    <Reveal i={0}>
+                        <Eyebrow>Experience</Eyebrow>
+                    </Reveal>
+                    <Reveal
+                        i={1}
+                        as="h2"
+                        className="mt-3.5 max-w-[18ch] font-head text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.02em]"
+                    >
+                        Where I&apos;ve shipped.
+                    </Reveal>
+                </div>
+                <Reveal i={2} className="border-t border-ink/15">
+                    {EXPERIENCE.map((x, i) => (
+                        <ExperienceItem
+                            key={x.org}
+                            x={x}
+                            n={i + 1}
+                            open={open === i}
+                            onToggle={() => setOpen(open === i ? -1 : i)}
+                        />
+                    ))}
+                </Reveal>
+            </div>
+        </section>
+    )
+}
+
+/* -------------------------------- projects --------------------------------- */
+
+function Projects() {
+    return (
+        <section id="projects" className="bg-ink-900 py-24 md:py-32">
+            <div className={CONTAINER}>
+                <div className="mb-14 flex flex-col gap-[18px] min-[820px]:flex-row min-[820px]:items-end min-[820px]:justify-between">
+                    <div>
+                        <Reveal i={0}>
+                            <Eyebrow>Projects</Eyebrow>
+                        </Reveal>
+                        <Reveal
+                            i={1}
+                            as="h2"
+                            className="mt-3.5 max-w-[18ch] font-head text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.02em]"
+                        >
+                            Selected work.
+                        </Reveal>
+                    </div>
+                    <Reveal i={2} as="p" className="max-w-[36ch] text-[1.05rem] leading-[1.55] text-muted-dark">
+                        A mix of products, platforms and developer tooling — built to be owned, not just demoed.
+                    </Reveal>
+                </div>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 min-[980px]:grid-cols-3">
+                    {PROJECTS.map((p, i) => {
+                        const external = p.href.startsWith("http")
+                        return (
+                            <Reveal key={p.title} i={i % 3}>
+                                <a
+                                    href={p.href}
+                                    target={external ? "_blank" : undefined}
+                                    rel={external ? "noopener" : undefined}
+                                    className="block h-full rounded-xl border border-ink-700 bg-ink-800 px-6 pb-7 pt-[26px] transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-crimson hover:bg-[#26123f]"
+                                >
+                                    <div className="mb-6 flex flex-wrap gap-[7px]">
+                                        {p.cat.map((c, j) => (
+                                            <span
+                                                key={c}
+                                                className="font-mono text-[0.64rem] uppercase tracking-[0.1em] text-muted-dark"
+                                            >
+                                                {c}
+                                                {j < p.cat.length - 1 && (
+                                                    <span className="ml-[7px] text-crimson">·</span>
+                                                )}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="flex items-center gap-2 font-head text-2xl font-semibold tracking-[-0.01em]">
+                                        {p.title} <ArrowUpRight className="h-5 w-5 opacity-80" />
+                                    </div>
+                                    <div className="mt-3 text-[0.98rem] leading-[1.6] text-muted-dark">{p.desc}</div>
+                                </a>
+                            </Reveal>
+                        )
+                    })}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+/* -------------------------------- education -------------------------------- */
+
+function Education() {
+    return (
+        <section id="education" className="bg-paper py-24 text-ink md:py-32">
+            <div className={CONTAINER}>
+                <div className="mb-14">
+                    <Reveal i={0}>
+                        <Eyebrow>Education</Eyebrow>
+                    </Reveal>
+                    <Reveal
+                        i={1}
+                        as="h2"
+                        className="mt-3.5 max-w-[18ch] font-head text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.02em]"
+                    >
+                        Background &amp; highlights.
+                    </Reveal>
+                </div>
+                <div className="border-t border-ink/15">
+                    {EDUCATION.map((e, i) => (
+                        <Reveal
+                            key={e.title}
+                            i={i}
+                            className="grid grid-cols-[auto_1fr] items-baseline gap-x-[22px] gap-y-1.5 border-b border-ink/15 px-1 py-7 sm:grid-cols-[auto_1fr_auto]"
+                        >
+                            <span className="font-mono text-[0.85rem] font-semibold text-crimson">
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <div className="min-w-0">
+                                <div className="font-head text-[1.15rem] font-semibold tracking-[-0.01em] sm:text-[1.35rem]">
+                                    {e.title}{" "}
+                                    <span className="text-[1.02rem] font-medium text-muted-light">· {e.org}</span>
+                                </div>
+                                <div className="mt-2 max-w-[62ch] leading-[1.55] text-muted-light">{e.note}</div>
+                            </div>
+                            <span className="col-start-2 font-mono text-[0.76rem] tracking-[0.08em] text-muted-light sm:col-auto sm:whitespace-nowrap">
+                                {e.date}
+                            </span>
+                        </Reveal>
+                    ))}
+                </div>
+                <Reveal i={1} className="mt-7 flex flex-wrap items-baseline gap-3.5">
+                    <span className="rounded-full border border-ink/20 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-crimson">
+                        Languages
+                    </span>
+                    <span>English · Slovak · Russian · Belarusian</span>
+                </Reveal>
+            </div>
+        </section>
+    )
+}
+
+/* ----------------------------- contact / footer ---------------------------- */
+
+function Contact() {
+    return (
+        <section
+            id="contact"
+            className="relative overflow-hidden bg-[url(/contact-bg.jpg)] bg-cover bg-center pt-[120px]"
+        >
+            <div className={`${CONTAINER} relative pb-[90px] text-center`}>
+                <Reveal i={0}>
+                    <Eyebrow onRed>Contact</Eyebrow>
+                </Reveal>
+                <Reveal
+                    i={1}
+                    as="h2"
+                    className="mt-[18px] font-head text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.04] tracking-[-0.025em]"
+                >
+                    Get In Touch
+                </Reveal>
+                <Reveal i={2} as="p" className="mx-auto mt-[18px] max-w-[42ch] text-[1.1rem] leading-[1.6] text-white/85">
+                    Open to collaborations, interesting problems, or just a friendly chat.
+                </Reveal>
+                <Reveal i={3} className="mt-[38px]">
+                    <a
+                        href="mailto:mikhail.shytsko@gmail.com"
+                        className={`${BTN} bg-white text-ink hover:bg-crimson hover:text-white`}
+                    >
+                        mikhail.shytsko@gmail.com <ArrowUpRight className="h-[18px] w-[18px]" />
+                    </a>
+                </Reveal>
+                <Reveal i={4} className="mt-11 flex flex-wrap justify-center gap-7">
+                    {SOCIALS.map((s) => {
+                        const external = s.href.startsWith("http")
+                        return (
+                            <a
+                                key={s.label}
+                                href={s.href}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noopener" : undefined}
+                                className="font-mono text-[0.74rem] uppercase tracking-[0.12em] text-white/80 transition-colors [box-shadow:inset_0_-0.08em_0_rgba(255,255,255,0.25)] hover:text-white"
+                            >
+                                {s.label}
+                            </a>
+                        )
+                    })}
+                </Reveal>
+            </div>
+            <div className={`${CONTAINER} relative flex flex-col justify-between gap-2 border-t border-ink-700 py-7 sm:flex-row sm:items-center`}>
+                <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-dark">
+                    © {new Date().getFullYear()} Mikhail Shytsko · Software &amp; AI Engineer · Bratislava, Slovakia ·
+                    Last updated{" "}
+                    {new Date(process.env.NEXT_PUBLIC_LAST_UPDATED!).toLocaleDateString("en-US", {
+                        month: "long",
+                        year: "numeric",
+                    })}
+                </span>
+                <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-dark">
+                    Palette inspired by{" "}
+                    <a
+                        href="https://sudolabs.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-2 transition-colors hover:text-white"
+                    >
+                        sudolabs.com
+                    </a>{" "}
+                    — non-commercial, no affiliation
+                </span>
+            </div>
+        </section>
+    )
+}
+
+/* ---------------------------------- page ----------------------------------- */
+
+export default function Portfolio() {
+    return (
+        <MotionConfig reducedMotion="user">
+            <div className="min-h-screen bg-ink-900 font-body text-white antialiased">
+                <Header />
+                <main>
+                    <Hero />
+                    <Worked />
+                    <Summary />
+                    <Experience />
+                    <Projects />
+                    <Education />
+                    <Contact />
+                </main>
+            </div>
+        </MotionConfig>
     )
 }
