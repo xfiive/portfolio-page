@@ -681,16 +681,7 @@ function Contact() {
                     })}
                 </span>
                 <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-dark">
-                    Palette inspired by{" "}
-                    <a
-                        href="https://sudolabs.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline underline-offset-2 transition-colors hover:text-white"
-                    >
-                        sudolabs.com
-                    </a>{" "}
-                    — non-commercial, no affiliation
+                    Palette inspired by sudolabs.com — non-commercial, no affiliation
                 </span>
             </div>
         </section>
