@@ -1,22 +1,47 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
+  variable: "--font-head",
+})
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-body",
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600"],
+  variable: "--font-mono",
+})
+
 const SITE_URL = "https://mikhail.shytsko.com"
 const SITE_NAME = "Mikhail Shytsko"
-const SITE_TITLE = "Mikhail Shytsko — Software Engineer | Portfolio"
+const SITE_TITLE = "Mikhail Shytsko — Software & AI Engineer | Portfolio"
 const SITE_DESCRIPTION =
-  "Mikhail Shytsko — Solutions & AI Engineer at Slovenská sporiteľňa. Founder of Seedfast, a schema-aware data generator for PostgreSQL."
+  "Mikhail Shytsko — Software & AI Engineer in Bratislava, Slovakia. Solutions & AI Engineer at Slovenská sporiteľňa and founder of Seedfast, a schema-aware synthetic-data generator for PostgreSQL."
 
-const profileLd = {
+// Single canonical Seedfast description — keep in sync with public/llms.txt and seedfa.st.
+const SEEDFAST_DESCRIPTION =
+  "Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for compliance-sensitive industries where production data cannot leave secure environments."
+
+const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "ProfilePage",
       "@id": `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      name: SITE_TITLE,
+      inLanguage: "en",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
       mainEntity: { "@id": `${SITE_URL}/#person` },
-      dateModified: "2026-05-19",
+      dateCreated: "2025-05-17",
+      dateModified: process.env.NEXT_PUBLIC_LAST_UPDATED,
     },
     {
       "@type": "Person",
@@ -25,10 +50,29 @@ const profileLd = {
       givenName: "Mikhail",
       familyName: "Shytsko",
       url: SITE_URL,
-      image: `${SITE_URL}/avatar.jpg`,
-      jobTitle: "Founder, Seedfast",
+      email: "mailto:mikhail.shytsko@gmail.com",
+      image: {
+        "@type": "ImageObject",
+        "@id": `${SITE_URL}/#avatar`,
+        url: `${SITE_URL}/avatar.jpg`,
+        contentUrl: `${SITE_URL}/avatar.jpg`,
+        width: 640,
+        height: 640,
+        caption: "Mikhail Shytsko — Software & AI Engineer",
+      },
+      jobTitle: "Software & AI Engineer",
       description:
-        "Software engineer founding Seedfast, an AI-native CLI for database seeding. Also Solutions & AI Engineer at Slovenská sporiteľňa.",
+        "Software & AI engineer based in Bratislava, Slovakia. Founder of Seedfast, a schema-aware synthetic test-data generator for PostgreSQL, and Solutions & AI Engineer at Slovenská sporiteľňa.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Bratislava",
+        addressCountry: "SK",
+      },
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "GitHub",
+        value: "xfiive",
+      },
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "Technical University of Košice",
@@ -37,22 +81,29 @@ const profileLd = {
       worksFor: [
         { "@id": "https://seedfa.st/#organization" },
         {
-          "@type": "Organization",
-          name: "Slovenská sporiteľňa",
-          url: "https://www.slsp.sk",
-          description: "Slovakia's largest retail bank, serving 2M+ customers.",
+          "@type": "EmployeeRole",
+          roleName: "Solutions & AI Engineer",
+          worksFor: { "@id": "https://www.slsp.sk/#organization" },
         },
       ],
+      award:
+        "1st place, DDAccelerator Finals 2026 — Intelligent Digital Technology category, as the only Slovak startup among 9 countries (with Seedfast)",
+      knowsLanguage: ["en", "sk", "ru", "be"],
       knowsAbout: [
+        "LLM Engineering",
+        "Agentic AI Systems",
+        "Model Context Protocol (MCP)",
+        "LLM Evaluation",
+        "Synthetic Data Generation",
         "Software Engineering",
         "Backend Architecture",
         "Spring Framework",
+        "Kotlin",
         "Python",
+        "Go",
+        "Apache Kafka",
         "Microservices",
-        "LLM Engineering",
-        "AI Systems",
         "PostgreSQL",
-        "Schema-aware Data Generation",
       ],
       sameAs: [
         "https://seedfa.st/about",
@@ -63,31 +114,33 @@ const profileLd = {
         "https://linktr.ee/mikhsh",
       ],
     },
+    {
+      "@type": "Organization",
+      "@id": "https://seedfa.st/#organization",
+      name: "Seedfast",
+      url: "https://seedfa.st",
+      description: SEEDFAST_DESCRIPTION,
+      founder: { "@id": `${SITE_URL}/#person` },
+      award: "1st place, DDAccelerator Finals 2026 — Intelligent Digital Technology category",
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.slsp.sk/#organization",
+      name: "Slovenská sporiteľňa",
+      url: "https://www.slsp.sk",
+      description: "Slovakia's largest retail bank, serving 2M+ customers.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Mikhail Shytsko — Portfolio",
+      description: SITE_DESCRIPTION,
+      inLanguage: "en",
+      author: { "@id": `${SITE_URL}/#person` },
+      publisher: { "@id": `${SITE_URL}/#person` },
+    },
   ],
-}
-
-const seedfastLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://seedfa.st/#organization",
-  name: "Seedfast",
-  url: "https://seedfa.st",
-  description:
-    "Schema-aware test data generator for PostgreSQL. Produces referentially consistent fake data directly from your database schema for compliance-sensitive industries.",
-  founder: { "@id": `${SITE_URL}/#person` },
-  sameAs: ["https://seedfa.st"],
-}
-
-const websiteLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${SITE_URL}/#website`,
-  url: SITE_URL,
-  name: "Mikhail Shytsko — Portfolio",
-  description: SITE_DESCRIPTION,
-  inLanguage: "en",
-  author: { "@id": `${SITE_URL}/#person` },
-  publisher: { "@id": `${SITE_URL}/#person` },
 }
 
 export const metadata: Metadata = {
@@ -101,19 +154,11 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
-  keywords: [
-    "Mikhail Shytsko",
-    "Software Engineer",
-    "Portfolio",
-    "Backend Engineer",
-    "Spring",
-    "Python",
-    "AI Engineer",
-    "LLM",
-    "Microservices",
-  ],
   alternates: {
     canonical: "/",
+    types: {
+      "text/markdown": "/llms.txt",
+    },
   },
   robots: {
     index: true,
@@ -135,24 +180,27 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/avatar.jpg",
-        width: 640,
-        height: 640,
-        alt: "Mikhail Shytsko — Software Engineer",
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mikhail Shytsko — Software & AI Engineer",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     creator: "@mikhailshytsko",
-    images: ["/avatar.jpg"],
+    images: ["/og-image.jpg"],
   },
   icons: {
-    icon: "/icon.ico",
+    icon: [
+      { url: "/icon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
     shortcut: "/icon.png",
-    apple: "/icon.png",
+    apple: "/apple-touch-icon.png",
   },
   verification: {
     google: "WUcNdWGO-M-hvrdpkuisrOvwGi_KZ_MzMqCYiPah5M4",
@@ -162,7 +210,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1a0033",
+  themeColor: "#15002e",
 }
 
 export default function RootLayout({
@@ -171,19 +219,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-[#1a0033] font-sans antialiased">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="min-h-screen bg-[#15002e] font-body antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(profileLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(seedfastLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
