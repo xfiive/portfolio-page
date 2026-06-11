@@ -183,11 +183,19 @@ function Reveal({
     )
 }
 
-function Eyebrow({ children, onRed = false }: { children: React.ReactNode; onRed?: boolean }) {
+function Eyebrow({
+    children,
+    onRed = false,
+    onLight = false,
+}: {
+    children: React.ReactNode
+    onRed?: boolean
+    onLight?: boolean
+}) {
     return (
         <span
             className={`inline-block font-mono text-xs font-semibold uppercase tracking-[0.15em] ${
-                onRed ? "text-white/85" : "text-crimson"
+                onRed ? "text-white/85" : onLight ? "text-ember-deep" : "text-ember"
             }`}
         >
             {children}
@@ -229,7 +237,7 @@ function Header() {
                 <a
                     href="/cv.pdf"
                     download
-                    className={`${BTN} border-white/25 px-[18px] py-[11px] text-white hover:border-crimson hover:bg-crimson`}
+                    className={`${BTN} border-white/25 px-[18px] py-[11px] text-white hover:border-ember hover:bg-ember`}
                 >
                     Download CV <Download className="h-[15px] w-[15px]" />
                 </a>
@@ -276,7 +284,7 @@ function Hero() {
                         Computer Science, Technical University of Košice (2025).
                     </Reveal>
                     <Reveal i={3} className="mt-[34px] flex flex-wrap gap-3.5">
-                        <a href="#contact" className={`${BTN} bg-white text-ink hover:bg-crimson hover:text-white`}>
+                        <a href="#contact" className={`${BTN} bg-white text-ink hover:bg-ember hover:text-white`}>
                             Let&apos;s talk <ArrowUpRight className="h-[18px] w-[18px]" />
                         </a>
                         <a href="#projects" className={`${BTN} border-white/30 text-white hover:bg-white/10`}>
@@ -286,7 +294,7 @@ function Hero() {
                 </div>
                 <div className="w-full max-w-[380px] max-[600px]:max-w-none min-[900px]:ml-auto">
                     <Reveal i={2}>
-                        <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/30 bg-[#2a0010] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]">
+                        <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/30 bg-[#06262c] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)]">
                             <Image
                                 src="/avatar.jpg"
                                 alt="Portrait of Mikhail Shytsko"
@@ -310,7 +318,7 @@ function Worked() {
         <section className="bg-paper py-16 text-ink md:py-20">
             <div className={`${CONTAINER} text-center`}>
                 <Reveal i={0}>
-                    <Eyebrow>Currently building at</Eyebrow>
+                    <Eyebrow onLight>Currently building at</Eyebrow>
                 </Reveal>
                 <Reveal
                     i={1}
@@ -320,7 +328,7 @@ function Worked() {
                         href="https://www.slsp.sk/"
                         target="_blank"
                         rel="noopener"
-                        className="inline-flex items-center gap-2 leading-[1.08] transition-colors duration-300 ease-premium hover:text-crimson sm:justify-self-end"
+                        className="inline-flex items-center gap-2 leading-[1.08] transition-colors duration-300 ease-premium hover:text-ember-deep sm:justify-self-end"
                     >
                         <span className="sm:text-right">
                             Slovenská{" "}
@@ -329,14 +337,14 @@ function Worked() {
                         </span>
                         <ArrowUpRight className="h-[0.7em] w-[0.7em] opacity-70" />
                     </a>
-                    <span className="text-crimson" aria-hidden="true">
+                    <span className="text-ember-deep" aria-hidden="true">
                         ·
                     </span>
                     <a
                         href="https://seedfa.st"
                         target="_blank"
                         rel="noopener"
-                        className="inline-flex items-center gap-2 transition-colors duration-300 ease-premium hover:text-crimson sm:justify-self-start"
+                        className="inline-flex items-center gap-2 transition-colors duration-300 ease-premium hover:text-ember-deep sm:justify-self-start"
                     >
                         Seedfast <ArrowUpRight className="h-[0.7em] w-[0.7em] opacity-70" />
                     </a>
@@ -373,14 +381,14 @@ function Summary() {
                     </Reveal>
                     <Reveal i={3} className="mt-8 rounded-xl border border-ink-700 bg-ink-800 px-[26px] py-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="rounded-full border border-ink-700 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-crimson">
+                            <span className="rounded-full border border-ink-700 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ember">
                                 Founder
                             </span>
                             <a
                                 href="https://seedfa.st"
                                 target="_blank"
                                 rel="noopener"
-                                className="inline-flex items-center gap-[7px] font-head text-2xl font-semibold tracking-[-0.01em] text-white transition-colors hover:text-crimson"
+                                className="inline-flex items-center gap-[7px] font-head text-2xl font-semibold tracking-[-0.01em] text-white transition-colors hover:text-ember"
                             >
                                 Seedfast <ArrowUpRight className="h-4 w-4" />
                             </a>
@@ -422,13 +430,13 @@ function ExperienceItem({
                 aria-expanded={open}
                 className="grid w-full grid-cols-[auto_1fr] items-center gap-x-4 gap-y-1.5 px-1 py-[22px] text-left sm:grid-cols-[auto_1fr_auto_auto] sm:gap-5 sm:py-[26px]"
             >
-                <span className="font-mono text-[0.85rem] font-semibold text-crimson">
+                <span className="font-mono text-[0.85rem] font-semibold text-ember-deep">
                     {String(n).padStart(2, "0")}
                 </span>
                 <span className="min-w-0">
                     <span
                         className={`block font-head text-[1.15rem] font-semibold tracking-[-0.01em] transition-colors sm:text-[1.4rem] ${
-                            open ? "text-crimson" : "text-ink"
+                            open ? "text-ember-deep" : "text-ink"
                         }`}
                     >
                         {x.role}{" "}
@@ -456,7 +464,7 @@ function ExperienceItem({
                         {x.bullets.map((b) => (
                             <li
                                 key={b}
-                                className="relative pl-[26px] leading-[1.6] text-ink before:absolute before:left-1 before:top-[0.6em] before:h-0.5 before:w-2 before:bg-crimson before:content-['']"
+                                className="relative pl-[26px] leading-[1.6] text-ink before:absolute before:left-1 before:top-[0.6em] before:h-0.5 before:w-2 before:bg-ember-deep before:content-['']"
                             >
                                 {b}
                             </li>
@@ -485,7 +493,7 @@ function Experience() {
             <div className={CONTAINER}>
                 <div className="mb-14">
                     <Reveal i={0}>
-                        <Eyebrow>Experience</Eyebrow>
+                        <Eyebrow onLight>Experience</Eyebrow>
                     </Reveal>
                     <Reveal
                         i={1}
@@ -543,7 +551,7 @@ function Projects() {
                                     href={p.href}
                                     target={external ? "_blank" : undefined}
                                     rel={external ? "noopener" : undefined}
-                                    className="block h-full rounded-xl border border-ink-700 bg-ink-800 px-6 pb-7 pt-[26px] transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-crimson hover:bg-[#26123f]"
+                                    className="block h-full rounded-xl border border-ink-700 bg-ink-800 px-6 pb-7 pt-[26px] transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-ember hover:bg-[#0d3138]"
                                 >
                                     <div className="mb-6 flex flex-wrap gap-[7px]">
                                         {p.cat.map((c, j) => (
@@ -553,7 +561,7 @@ function Projects() {
                                             >
                                                 {c}
                                                 {j < p.cat.length - 1 && (
-                                                    <span className="ml-[7px] text-crimson">·</span>
+                                                    <span className="ml-[7px] text-ember">·</span>
                                                 )}
                                             </span>
                                         ))}
@@ -580,7 +588,7 @@ function Education() {
             <div className={CONTAINER}>
                 <div className="mb-14">
                     <Reveal i={0}>
-                        <Eyebrow>Education</Eyebrow>
+                        <Eyebrow onLight>Education</Eyebrow>
                     </Reveal>
                     <Reveal
                         i={1}
@@ -597,7 +605,7 @@ function Education() {
                             i={i}
                             className="grid grid-cols-[auto_1fr] items-baseline gap-x-[22px] gap-y-1.5 border-b border-ink/15 px-1 py-7 sm:grid-cols-[auto_1fr_auto]"
                         >
-                            <span className="font-mono text-[0.85rem] font-semibold text-crimson">
+                            <span className="font-mono text-[0.85rem] font-semibold text-ember-deep">
                                 {String(i + 1).padStart(2, "0")}
                             </span>
                             <div className="min-w-0">
@@ -614,7 +622,7 @@ function Education() {
                     ))}
                 </div>
                 <Reveal i={1} className="mt-7 flex flex-wrap items-baseline gap-3.5">
-                    <span className="rounded-full border border-ink/20 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-crimson">
+                    <span className="rounded-full border border-ink/20 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ember-deep">
                         Languages
                     </span>
                     <span>English · Slovak · Russian · Belarusian</span>
@@ -649,7 +657,7 @@ function Contact() {
                 <Reveal i={3} className="mt-[38px]">
                     <a
                         href="mailto:mikhail.shytsko@gmail.com"
-                        className={`${BTN} bg-white text-ink hover:bg-crimson hover:text-white`}
+                        className={`${BTN} bg-white text-ink hover:bg-ember hover:text-white`}
                     >
                         mikhail.shytsko@gmail.com <ArrowUpRight className="h-[18px] w-[18px]" />
                     </a>
@@ -681,15 +689,7 @@ function Contact() {
                     })}
                 </span>
                 <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-dark">
-                    Palette inspired by sudolabs.com — non-commercial, no affiliation.
-                    <br />
-                    From Sudolabs and not okay with this?{" "}
-                    <a
-                        href="mailto:mikhail.shytsko@gmail.com"
-                        className="underline underline-offset-2 transition-colors hover:text-white"
-                    >
-                        Email me
-                    </a>
+                    Designed & built by Mikhail Shytsko
                 </span>
             </div>
         </section>

@@ -29,18 +29,18 @@ const config = {
       },
       colors: {
         ink: {
-          DEFAULT: "#1b1230",
-          700: "#2e1a4d",
-          800: "#1c0834",
-          900: "#15002e",
+          DEFAULT: "#0c1b1e",
+          700: "#16363d",
+          800: "#07242a",
+          900: "#04191d",
         },
-        crimson: {
-          DEFAULT: "#f40000",
-          edge: "#e6001a",
+        ember: {
+          DEFAULT: "#ff4d14",
+          deep: "#c0320b",
         },
-        paper: "#f6f5f8",
-        "muted-light": "#6b6478",
-        "muted-dark": "#b9a9c9",
+        paper: "#f5f4f0",
+        "muted-light": "#65696a",
+        "muted-dark": "#a3b8b6",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
