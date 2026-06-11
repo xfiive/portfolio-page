@@ -681,7 +681,14 @@ function Contact() {
                     })}
                 </span>
                 <span className="font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted-dark">
-                    Palette inspired by sudolabs.com — non-commercial, no affiliation
+                    Palette inspired by sudolabs.com — non-commercial, no affiliation. From Sudolabs and not okay
+                    with this?{" "}
+                    <a
+                        href="mailto:mikhail.shytsko@gmail.com"
+                        className="underline underline-offset-2 transition-colors hover:text-white"
+                    >
+                        Email me
+                    </a>
                 </span>
             </div>
         </section>
