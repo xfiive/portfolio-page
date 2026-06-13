@@ -24,11 +24,11 @@ const EXPERIENCE = [
         date: "Jul 2025 — Present",
         summary: "MCP-based AI tooling · High-load banking platforms · Kafka pipelines.",
         bullets: [
-            "Designed and built an MCP-based AI assistant that summarizes and cross-references corporate-lending data across internal banking systems — replacing slow, manual multi-system lookups.",
-            "Architected the AI's data access as a least-privilege, fully auditable MCP tool layer (Azure OpenAI behind a gateway) — safe inside a regulated bank without touching the core approval workflow.",
-            "Built change-detection that surfaces and explains shifts across products, limits, collateral and client data, so reviewers catch material changes they'd otherwise miss.",
-            "Delivered a six-figure cost reduction by replacing a legacy workflow with an in-house Kafka pipeline.",
-            "Cut response times 85% for two high-load services serving 2M+ customers.",
+            "Designed and built an MCP-based AI assistant that summarizes and cross-references lending data spread across several internal banking systems — replacing the manual, multi-system lookup that slows credit review.",
+            "Architected the AI's data access as a least-privilege, fully auditable MCP tool layer, with strict data minimization and a controlled disable path — safe inside a regulated bank without altering the core approval workflow.",
+            "Built change-detection that surfaces and explains material changes across products, limits, collateral and client data — so reviewers catch shifts they'd otherwise miss across systems.",
+            "Delivered a six-figure cost reduction by replacing a legacy workflow with an in-house Kafka pipeline — production-ready, end-to-end from a one-page spec.",
+            "Cut response times 85% for two high-load services serving 2M+ customers by taking sole ownership of inherited services and driving targeted performance optimizations.",
         ],
         tags: ["Kotlin", "Spring", "MCP", "Azure OpenAI", "Apache Kafka", "Podman", "React"],
     },
@@ -36,15 +36,15 @@ const EXPERIENCE = [
         role: "Founding AI Engineer",
         org: "Seedfast",
         date: "Oct 2025 — Present",
-        summary: "Agentic data generation · self-optimizing LLM evals · 1st at DDAccelerator.",
+        summary: "AI-native data generation · evaluation frameworks · 1st at DDAccelerator.",
         bullets: [
             "Built an AI system that generates realistic, referentially-correct data for any database — sparing AI, QA and dev teams days of manual data-engineering per dataset, in a single run.",
-            "Re-architected the generation core into an agentic code-execution model — an LLM that writes and runs its own data-generation code — with independent verification that eliminated a class of silent data-integrity failures.",
-            "Engineered a GEPA-based self-optimizing eval harness (deterministic checks + LLM-as-judge) that more than doubled the combined success / quality / speed score on held-out evaluation.",
-            "Raised generated-data quality from 28% to 73% on a multi-dimensional benchmark, with locale-aware output in any language.",
-            "Shipped the developer-facing Go CLI and an MCP server — letting engineers and AI agents run Seedfast in CI/CD and agentic workflows.",
+            "Hardened the generation core with automated correctness checks — eliminating a class of silent data-integrity failures.",
+            "Built evaluation frameworks that made the non-deterministic generation pipeline measurable and guarded against regressions — used them to more than double its output quality on held-out data.",
+            "Added locale-aware generation in any language, so output reads natively for any locale, not just English.",
+            "Shipped the developer-facing Go CLI and an MCP server — letting engineers and AI agents run Seedfast in production, CI/CD and agentic workflows.",
         ],
-        tags: ["Python", "Go", "LangGraph", "GEPA", "MCP", "OpenAI", "LangSmith", "AWS"],
+        tags: ["Python", "Go", "LangGraph", "MCP", "OpenAI", "LangSmith", "PostgreSQL", "AWS"],
     },
     {
         role: "Software Engineer",
@@ -86,7 +86,7 @@ const PROJECTS = [
         cat: ["PostgreSQL", "LLM", "CLI"],
         title: "Seedfast",
         href: "https://seedfa.st",
-        desc: "Schema-aware synthetic-data generator. AI-native test data for PostgreSQL — referentially-consistent in under 3 minutes for compliance-sensitive industries. 1st place at DDAccelerator.",
+        desc: "An AI-native platform generating large-scale synthetic datasets for compliance-sensitive industries — finance, pharma, medtech. It reads database schemas and produces realistic, relationship-aware data in under 3 minutes.",
     },
     {
         cat: ["GraalVM", "Project Loom", "Project Panama"],
@@ -366,10 +366,10 @@ function Summary() {
                 </div>
                 <div>
                     <Reveal i={2} as="p" className="text-lg leading-[1.7] text-muted-dark">
-                        Building AI-native systems and the backends behind them — MCP-based agents, LLM pipelines and
-                        high-load services — with a strong Spring/JVM background now applied in Kotlin and Python. At
-                        Slovenská sporiteľňa — Slovakia&apos;s largest retail bank — I build the pipelines and AI
-                        tooling behind services serving millions of customers.
+                        Building AI-native systems and the backends behind them: MCP-based agents, LLM pipelines and
+                        high-load services, with a strong Spring/JVM background now applied in Kotlin and Python. At
+                        Slovenská sporiteľňa, Slovakia&apos;s largest retail bank, I build the pipelines and AI tooling
+                        behind services serving millions of customers.
                     </Reveal>
                     <Reveal i={3} className="mt-8 rounded-xl border border-ink-700 bg-ink-800 px-[26px] py-6">
                         <div className="flex flex-wrap items-center gap-3">

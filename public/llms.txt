@@ -9,12 +9,12 @@
 
 ## Projects
 
-- [Seedfast](https://seedfa.st): Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. Agentic code-execution generation core with a GEPA-based self-optimizing eval harness that raised generated-data quality from 28% to 73% on a multi-dimensional benchmark. Ships a developer-facing Go CLI and an MCP server. 1st place at DDAccelerator Finals 2026.
+- [Seedfast](https://seedfa.st): Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. The generation core is hardened with automated correctness checks and evaluation frameworks that more than doubled output quality on held-out data, with locale-aware generation in any language. Ships a developer-facing Go CLI and an MCP server. 1st place at DDAccelerator Finals 2026.
 - [DDAccelerator article on Seedfast](https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli)
 
 ## Experience
 
-- Slovenská sporiteľňa, Solutions & AI Engineer (Jul 2025 — present): MCP-based AI assistant for corporate lending — a least-privilege, fully auditable MCP tool layer over Azure OpenAI; change-detection across products, limits, collateral and client data; six-figure cost reduction via an in-house Kafka pipeline; 85% faster responses for two high-load services serving 2M+ customers.
+- Slovenská sporiteľňa, Solutions & AI Engineer (Jul 2025 — present): MCP-based AI assistant that cross-references lending data across internal banking systems — a least-privilege, fully auditable MCP tool layer over Azure OpenAI with strict data minimization and a controlled disable path; change-detection across products, limits, collateral and client data; six-figure cost reduction via an in-house Kafka pipeline; 85% faster responses for two high-load services serving 2M+ customers.
 - Seedfast, Founder (Oct 2025 — present): see Projects above.
 
 ## Profiles
@@ -27,7 +27,7 @@
 
 ## Expertise
 
-- AI / LLM engineering: agentic LLM applications, MCP-based agents and tooling, LLM evaluation (GEPA, LLM-as-judge), LangGraph
+- AI / LLM engineering: agentic LLM applications, MCP-based agents and tooling, LLM evaluation frameworks, LangGraph
 - Backend architecture: Spring Framework (Kotlin/Java), Python, Go, Apache Kafka, high-load microservices
 - Databases: PostgreSQL, schema-aware synthetic data generation
 - Domain: banking and regulated-industry software
