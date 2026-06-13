@@ -36,11 +36,11 @@ const EXPERIENCE = [
         role: "Founding AI Engineer",
         org: "Seedfast",
         date: "Oct 2025 — Present",
-        summary: "AI-native data generation · evaluation frameworks · 1st at DDAccelerator.",
+        summary: "AI-native data generation · Custom evaluation frameworks · Autonomous data engineering.",
         bullets: [
             "Built an AI system that generates realistic, referentially-correct data for any database — sparing AI, QA and dev teams days of manual data-engineering per dataset, in a single run.",
             "Hardened the generation core with automated correctness checks — eliminating a class of silent data-integrity failures.",
-            "Built evaluation frameworks that made the non-deterministic generation pipeline measurable and guarded against regressions — used them to more than double its output quality on held-out data.",
+            "Built custom evaluation frameworks that made the non-deterministic generation pipeline measurable and guarded against regressions — used them to more than double its output quality on held-out data.",
             "Added locale-aware generation in any language, so output reads natively for any locale, not just English.",
             "Shipped the developer-facing Go CLI and an MCP server — letting engineers and AI agents run Seedfast in production, CI/CD and agentic workflows.",
         ],
