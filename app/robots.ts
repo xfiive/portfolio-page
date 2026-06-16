@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/cv.pdf", "/*.pdf$"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   }

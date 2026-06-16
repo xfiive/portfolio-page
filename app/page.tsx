@@ -235,8 +235,8 @@ function Header() {
                     ))}
                 </nav>
                 <a
-                    href="/cv.pdf"
-                    download
+                    href="/cv-mikhail-shytsko-862e16c508.pdf"
+                    download="Mikhail-Shytsko-CV.pdf"
                     className={`${BTN} border-white/25 px-[18px] py-[11px] text-white hover:border-ember hover:bg-ember`}
                 >
                     Download CV <Download className="h-[15px] w-[15px]" />

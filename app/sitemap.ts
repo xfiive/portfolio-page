@@ -14,11 +14,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${SITE_URL}/cv.pdf`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
   ]
 }

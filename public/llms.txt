@@ -5,7 +5,6 @@
 ## About
 
 - [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, projects, education, and contact links. Updated June 2026.
-- [Resume PDF](https://mikhail.shytsko.com/cv.pdf): Downloadable resume.
 
 ## Projects
 
