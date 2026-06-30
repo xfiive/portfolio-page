@@ -1,0 +1,33 @@
+{
+  "projectId": "4a23adf9-b862-436b-87f0-03eb40438f09",
+  "shape": "package",
+  "pkg": "my-v0-project",
+  "globalName": "PortfolioDS",
+  "srcDir": ".design-sync/extracted",
+  "tsconfig": "tsconfig.json",
+  "buildCmd": "node .design-sync/build-css.mjs",
+  "cssEntry": ".design-sync/build/ds.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "Button": ".design-sync/extracted/foundation/button.tsx",
+    "Eyebrow": ".design-sync/extracted/foundation/eyebrow.tsx",
+    "Tag": ".design-sync/extracted/foundation/tag.tsx",
+    "SectionHeading": ".design-sync/extracted/foundation/section-heading.tsx",
+    "PortraitFrame": ".design-sync/extracted/foundation/portrait-frame.tsx",
+    "ProjectCard": ".design-sync/extracted/patterns/project-card.tsx",
+    "ExperienceItem": ".design-sync/extracted/patterns/experience-item.tsx",
+    "EducationItem": ".design-sync/extracted/patterns/education-item.tsx",
+    "FounderCallout": ".design-sync/extracted/patterns/founder-callout.tsx"
+  },
+  "dtsPropsFor": {
+    "Button": "children: React.ReactNode;\n  /** solid: white fill, ember on hover · ember: ember fill · outline: hairline on dark */\n  variant?: 'solid' | 'ember' | 'outline';\n  href?: string;\n  /** trailing icon node, e.g. an ArrowUpRight glyph */\n  icon?: React.ReactNode;\n  className?: string;",
+    "Eyebrow": "children: React.ReactNode;\n  /** dark: ember on ink · light: ember-deep on paper · onImage: white on the hero/contact gradient */\n  tone?: 'dark' | 'light' | 'onImage';",
+    "Tag": "children: React.ReactNode;\n  /** tech: muted outline on paper · accent-dark: ember on ink · accent-light: ember-deep on paper */\n  variant?: 'tech' | 'accent-dark' | 'accent-light';",
+    "SectionHeading": "eyebrow: string;\n  title: React.ReactNode;\n  /** dark: on the ink canvas · light: on the paper band */\n  tone?: 'dark' | 'light';\n  /** optional supporting line under the heading */\n  description?: React.ReactNode;",
+    "PortraitFrame": "src: string;\n  alt: string;\n  className?: string;",
+    "ProjectCard": "title: string;\n  description: string;\n  /** short tech/category labels, rendered dot-separated */\n  categories: string[];\n  href?: string;",
+    "ExperienceItem": "/** 1-based position; rendered zero-padded (01, 02, ...) */\n  index: number;\n  role: string;\n  org: string;\n  date: string;\n  summary: string;\n  bullets: string[];\n  tags: string[];\n  /** render expanded on mount */\n  defaultOpen?: boolean;",
+    "EducationItem": "/** 1-based position; rendered zero-padded (01, 02, ...) */\n  index: number;\n  title: string;\n  org: string;\n  date: string;\n  note: string;",
+    "FounderCallout": "/** venture / product name, e.g. 'Seedfast' */\n  name: string;\n  href: string;\n  /** bare domain shown on the right, e.g. 'seedfa.st' */\n  url: string;\n  description: string;\n  /** pill label; defaults to 'Founder' */\n  label?: string;"
+  }
+}

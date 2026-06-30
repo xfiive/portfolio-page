@@ -1,0 +1,42 @@
+/* Tailwind input for the extracted design system. Compiled (via
+   .design-sync/build-css.mjs) into ds.css, which is wired as cfg.cssEntry and
+   copied to the bundle's _ds_bundle.css. The remote @import supplies the three
+   brand families the live site loads via next/font (reported as [FONT_REMOTE]);
+   the :root block recreates the CSS variables next/font and globals.css set in
+   the Next app so the standalone bundle is self-styling. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* type system — set by next/font on <html> in the live app */
+    --font-head: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* shadcn HSL theme tokens (from app/globals.css) */
+    --background: 190 76% 6%;
+    --foreground: 0 0% 100%;
+    --card: 190 71% 10%;
+    --card-foreground: 0 0% 100%;
+    --primary: 15 100% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 71% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 191 47% 16%;
+    --muted-foreground: 174 13% 68%;
+    --accent: 191 47% 16%;
+    --accent-foreground: 0 0% 100%;
+    --border: 191 47% 16%;
+    --input: 191 47% 16%;
+    --ring: 15 100% 54%;
+    --radius: 0.75rem;
+  }
+
+  html {
+    font-family: var(--font-body);
+  }
+}
