@@ -4,17 +4,17 @@
 
 ## About
 
-- [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, projects, education, and contact links. Updated June 2026.
+- [Portfolio](https://mikhail.shytsko.com): Single-page CV with summary, experience, projects, education, and contact links. Updated October 2026.
 
 ## Projects
 
-- [Seedfast](https://seedfa.st): Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. The generation core is hardened with automated correctness checks and evaluation frameworks that more than doubled output quality on held-out data, with locale-aware generation in any language. Ships a developer-facing Go CLI and an MCP server. 1st place at DDAccelerator Finals 2026.
+- [Seedfast](https://seedfa.st): Schema-aware synthetic test-data generator for PostgreSQL. Reads a database schema and produces referentially consistent, realistic data in under 3 minutes — built for regulated industries (finance, pharma, medtech) where production data cannot leave secure environments. Generates realistic, referentially correct data in any locale and any domain; evaluation frameworks and automated correctness checks more than doubled output quality on held-out data. Ships a Go CLI and an MCP server for engineers and AI agents in production and CI, plus a web app with free Postgres tooling. 1st place at DDAccelerator Finals 2026.
 - [DDAccelerator article on Seedfast](https://www.ddaccelerator.com/news/seedfast-makes-database-seeding-fast-clean-and-reliable-straight-from-the-cli)
 
 ## Experience
 
-- Slovenská sporiteľňa, Solutions & AI Engineer (Jul 2025 — present): MCP-based AI assistant that cross-references lending data across internal banking systems — a least-privilege, fully auditable MCP tool layer over Azure OpenAI with strict data minimization and a controlled disable path; change-detection across products, limits, collateral and client data; six-figure cost reduction via an in-house Kafka pipeline; 85% faster responses for two high-load services serving 2M+ customers.
-- Seedfast, Founder (Oct 2025 — present): see Projects above.
+- Slovenská sporiteľňa, Solutions & AI Engineer (Jul 2025 — present): AI agent for credit review that cross-references lending, collateral and limits, replacing a manual multi-system lookup — approved for production as a Koog agent sandboxed in its own virtual filesystem, reaching bank data only through a least-privilege, auditable MCP tool layer with strict data minimization and a controlled disable path; change-detection that surfaces and explains material changes across products, limits, collateral and client data; LLM pipelines for automated credit-data validation and risk scoring on Azure OpenAI and Anthropic models, traced and evaluated with LangSmith, LangFuse and Ragas; 85% faster responses for two high-load services serving 2M+ customers; React/TypeScript features for a micro-frontend banking app; built a 3-person engineering team from scratch, doubling feature delivery.
+- Seedfast, Founder & Founding Engineer (Oct 2025 — present): owns the generation core, Go CLI and MCP server, web app onboarding and lifecycle emails, containerised infrastructure and CI, plus demos and hands-on customer onboarding. See Projects above.
 
 ## Profiles
 
@@ -26,11 +26,12 @@
 
 ## Expertise
 
-- AI / LLM engineering: agentic LLM applications, MCP-based agents and tooling, LLM evaluation frameworks, LangGraph
+- AI / LLM engineering: agentic LLM applications, MCP-based agents and tooling, RAG, LLM evaluation frameworks (LangSmith, LangFuse, Ragas), LangGraph, Koog
 - Backend architecture: Spring Framework (Kotlin/Java), Python, Go, Apache Kafka, high-load microservices
+- Frontend: TypeScript, React, Next.js
 - Databases: PostgreSQL, schema-aware synthetic data generation
 - Domain: banking and regulated-industry software
 
 ## Languages
 
-- English, Slovak, Russian, Belarusian
+- English (C1, IELTS Academic 8.0), Slovak, Czech, Russian, Belarusian

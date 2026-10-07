@@ -22,29 +22,61 @@ const EXPERIENCE = [
         role: "Solutions & AI Engineer",
         org: "Slovenská sporiteľňa",
         date: "Jul 2025 — Present",
-        summary: "MCP-based AI tooling · High-load banking platforms · Kafka pipelines.",
+        summary: "Agentic AI for credit review · LLM pipelines · High-load services · Team building.",
         bullets: [
-            "Designed and built an MCP-based AI assistant that summarizes and cross-references lending data spread across several internal banking systems — replacing the manual, multi-system lookup that slows credit review.",
-            "Architected the AI's data access as a least-privilege, fully auditable MCP tool layer, with strict data minimization and a controlled disable path — safe inside a regulated bank without altering the core approval workflow.",
+            "Mapped the credit-review workflow from scratch with analysts and process owners, then replaced its manual multi-system lookup with an AI agent that summarizes and cross-references lending, collateral and limits spread across several internal banking systems.",
+            "Got it approved for production in a regulated bank: a Koog agent sandboxed in its own virtual filesystem, reaching bank data only through a least-privilege, auditable MCP tool layer.",
+            "Designed the agent's data access with strict data minimization and a controlled disable path — safe inside a regulated bank without altering the core approval workflow.",
             "Built change-detection that surfaces and explains material changes across products, limits, collateral and client data — so reviewers catch shifts they'd otherwise miss across systems.",
-            "Delivered a six-figure cost reduction by replacing a legacy workflow with an in-house Kafka pipeline — production-ready, end-to-end from a one-page spec.",
-            "Cut response times 85% for two high-load services serving 2M+ customers by taking sole ownership of inherited services and driving targeted performance optimizations.",
+            "Shipped LLM pipelines for automated credit-data validation and risk scoring.",
+            "Ran the LLM layer on Azure OpenAI and Anthropic models, traced and evaluated with LangSmith, LangFuse and Ragas to keep agent behaviour observable and measurable.",
+            "Cut response times 85% for two high-load services serving 2M+ customers by taking sole ownership of inherited services and driving targeted performance optimisations.",
+            "Built React and TypeScript features for a large micro-frontend banking app on in-house UI libraries.",
+            "Doubled feature delivery by building a 3-person engineering team from scratch — from role definitions to offers, plus code review and retrospectives.",
         ],
-        tags: ["Kotlin", "Spring", "MCP", "Azure OpenAI", "Apache Kafka", "Podman", "React"],
+        tags: [
+            "Kotlin",
+            "Python",
+            "TypeScript",
+            "Koog",
+            "LangGraph",
+            "LangSmith",
+            "LangFuse",
+            "Ragas",
+            "MCP",
+            "Azure OpenAI",
+            "Spring",
+            "Apache Kafka",
+            "React",
+        ],
     },
     {
-        role: "Founding AI Engineer",
+        role: "Founding Engineer",
         org: "Seedfast",
         date: "Oct 2025 — Present",
-        summary: "AI-native data generation · Custom evaluation frameworks · Autonomous data engineering.",
+        summary: "AI-native data generation · Evaluation frameworks · Go CLI & MCP server · Web app & infra.",
         bullets: [
-            "Built an AI system that generates realistic, referentially-correct data for any database — sparing AI, QA and dev teams days of manual data-engineering per dataset, in a single run.",
-            "Hardened the generation core with automated correctness checks — eliminating a class of silent data-integrity failures.",
-            "Built custom evaluation frameworks that made the non-deterministic generation pipeline measurable and guarded against regressions — used them to more than double its output quality on held-out data.",
-            "Added locale-aware generation in any language, so output reads natively for any locale, not just English.",
-            "Shipped the developer-facing Go CLI and an MCP server — letting engineers and AI agents run Seedfast in production, CI/CD and agentic workflows.",
+            "Built an AI system that generates realistic, referentially correct data for any database in any locale and any domain — sparing teams days of manual data engineering per dataset.",
+            "More than doubled output quality on held-out data with evaluation frameworks and automated correctness checks that made a non-deterministic LLM pipeline measurable.",
+            "Shipped the Go CLI and MCP server that let engineers and AI agents run Seedfast in production and CI, plus the runbooks and setup guides behind them.",
+            "Own the web app's onboarding, lifecycle emails and free Postgres tooling in TypeScript, React and Next.js, with funnel analytics showing where new users stall.",
+            "Take the demos and technical calls myself, and stay with each team until the product runs in their own environment — often debugging setups I can't see.",
+            "Run the containerised infrastructure behind the product, including the CI that builds and distributes the CLI.",
         ],
-        tags: ["Python", "Go", "LangGraph", "MCP", "OpenAI", "LangSmith", "PostgreSQL", "AWS"],
+        tags: [
+            "Python",
+            "Go",
+            "TypeScript",
+            "MCP",
+            "OpenAI",
+            "LangSmith",
+            "FastAPI",
+            "Next.js",
+            "Supabase",
+            "PostgreSQL",
+            "Docker",
+            "AWS",
+        ],
     },
     {
         role: "Software Engineer",
@@ -52,10 +84,10 @@ const EXPERIENCE = [
         date: "Apr — Jul 2025",
         summary: "GDPR-first backend for a mental-health startup.",
         bullets: [
-            "Built a secure, EU GDPR-compliant backend from scratch on Spring WebFlux + GCP, encrypting sensitive patient data in real time.",
-            "Automated a CI/CD pipeline that cut deploys from 12 to 4 minutes.",
+            "Built a GDPR-compliant backend from scratch on Spring WebFlux and GCP for a mental-health startup, encrypting patient data in real time with zero unauthorised reads.",
+            "Took deploys from 12 minutes to 4 with no downtime by automating the GitLab CI/CD pipeline.",
         ],
-        tags: ["Java", "Spring WebFlux", "GCP", "Firestore", "Firebase Auth"],
+        tags: ["Java", "Spring WebFlux", "FastAPI", "GCP", "Firestore", "Firebase Auth", "Cloud Functions", "Docker", "GitLab CI/CD"],
     },
     {
         role: "Software Engineer",
@@ -63,21 +95,21 @@ const EXPERIENCE = [
         date: "May — Oct 2024",
         summary: "Certification automation + GraalPy trend analytics.",
         bullets: [
-            "Automated equipment certification, cutting document-certification time ~50%.",
-            "Built GraalPy trend analytics that accelerated product decisions ~25%.",
+            "Halved document-certification time by automating equipment certification.",
+            "Accelerated product decisions ~25% with GraalPy trend analytics.",
         ],
-        tags: ["Java", "Spring", "GraalVM / GraalPy", "PostgreSQL", "MongoDB", "Docker"],
+        tags: ["Java", "Spring", "GraalVM / GraalPy", "PostgreSQL", "MongoDB", "Vaadin", "Docker", "GitHub Actions"],
     },
     {
         role: "Backend Developer",
         org: "ArenaPizza",
         date: "Oct 2023 — Mar 2024",
-        summary: "Secure REST API + scheduling optimization.",
+        summary: "Secure REST API + scheduling optimisation.",
         bullets: [
-            "Shipped a secure Spring Boot REST API with OAuth2 / JWT authentication.",
-            "Cut shift-approval time from 5 days to 2 through schedule optimization.",
+            "Cut shift-approval time from 5 days to 2 through schedule optimisation.",
+            "Shipped the secure Spring Boot REST API behind it, with OAuth2 / JWT authentication.",
         ],
-        tags: ["Java", "Spring Boot", "OAuth2 / JWT", "PostgreSQL", "Redis"],
+        tags: ["Java", "Spring Boot", "OAuth2 / JWT", "PostgreSQL", "Redis", "Maven", "GitHub Actions"],
     },
 ]
 
@@ -366,10 +398,9 @@ function Summary() {
                 </div>
                 <div>
                     <Reveal i={2} as="p" className="text-lg leading-[1.7] text-muted-dark">
-                        Building AI-native systems and the backends behind them: MCP-based agents, LLM pipelines and
-                        high-load services, with a strong Spring/JVM background now applied in Kotlin and Python. At
-                        Slovenská sporiteľňa, Slovakia&apos;s largest retail bank, I build the pipelines and AI tooling
-                        behind services serving millions of customers.
+                        Shipping production systems where mistakes are expensive: agentic LLM applications and MCP
+                        agents at Slovenská sporiteľňa, Slovakia&apos;s largest retail bank, on a JVM/Python background
+                        in high-load services for 2M+ customers.
                     </Reveal>
                     <Reveal i={3} className="mt-8 rounded-xl border border-ink-700 bg-ink-800 px-[26px] py-6">
                         <div className="flex flex-wrap items-center gap-3">
@@ -617,7 +648,7 @@ function Education() {
                     <span className="rounded-full border border-ink/20 px-2.5 py-[5px] font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ember-deep">
                         Languages
                     </span>
-                    <span>English · Slovak · Russian · Belarusian</span>
+                    <span>English (C1, IELTS Academic 8.0) · Slovak · Czech · Russian · Belarusian</span>
                 </Reveal>
             </div>
         </section>

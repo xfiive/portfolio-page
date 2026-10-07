@@ -88,11 +88,12 @@ const jsonLd = {
       ],
       award:
         "1st place, DDAccelerator Finals 2026 — Intelligent Digital Technology category, as the only Slovak startup among 9 countries (with Seedfast)",
-      knowsLanguage: ["en", "sk", "ru", "be"],
+      knowsLanguage: ["en", "sk", "cs", "ru", "be"],
       knowsAbout: [
         "LLM Engineering",
         "Agentic AI Systems",
         "Model Context Protocol (MCP)",
+        "Retrieval-Augmented Generation (RAG)",
         "LLM Evaluation",
         "Synthetic Data Generation",
         "Software Engineering",
@@ -100,6 +101,8 @@ const jsonLd = {
         "Spring Framework",
         "Kotlin",
         "Python",
+        "TypeScript",
+        "React",
         "Go",
         "Apache Kafka",
         "Microservices",
